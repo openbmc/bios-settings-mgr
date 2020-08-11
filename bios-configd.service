@@ -1,0 +1,9 @@
+[Unit]
+Description=BIOS settings manager
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/bios-configd
+
+[Install]
+WantedBy=multi-user.target
