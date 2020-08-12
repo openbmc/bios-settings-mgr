@@ -1,0 +1,14 @@
+[Unit]
+Description=  BIOS Config Manager - For Remote BIOS configuration update
+Requires=xyz.openbmc_project.EntityManager.service
+After=xyz.openbmc_project.ObjectMapper.service
+
+[Service]
+Restart=always
+RestartSec=5
+StartLimitBurst=10
+ExecStart=/usr/bin/env biosconfig-manager
+SyslogIdentifier=biosconfig-manager
+
+[Install]
+WantedBy=multi-user.target
