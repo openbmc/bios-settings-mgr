@@ -16,6 +16,10 @@ project(
 # project uses the same compiler, we can safely ignmore these info notes.
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
+conf_data = configuration_data()
+conf_data.set_quoted('BIOS_PERSIST_PATH', get_option('bios-persist-path'))
+configure_file(output: 'config.h', configuration: conf_data)
+
 boost_args = ['-DBOOST_ALL_NO_LIB',
               '-DBOOST_ASIO_DISABLE_THREADS',
               '-DBOOST_ERROR_CODE_HEADER_ONLY',
@@ -32,7 +36,8 @@ deps = [dependency('boost'),
 
 executable('biosconfig-manager',
            'src/manager.cpp',
-        implicit_include_directories: false,
+           'src/manager_serialize.cpp',
+        implicit_include_directories: true,
         include_directories: ['include'],
         dependencies: deps,
         cpp_args : boost_args,

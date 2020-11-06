@@ -15,10 +15,13 @@
 */
 #pragma once
 
+#include "config.h"
+
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/BIOSConfig/Manager/server.hpp>
 
+#include <filesystem>
 #include <string>
 
 namespace bios_config
@@ -26,8 +29,10 @@ namespace bios_config
 
 static constexpr auto service = "xyz.openbmc_project.BIOSConfigManager";
 static constexpr auto objectPath = "/xyz/openbmc_project/bios_config/manager";
+constexpr auto biosPersistFile = "biosData";
 
 using Base = sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager;
+namespace fs = std::filesystem;
 
 /** @class Manager
  *
@@ -131,6 +136,7 @@ class Manager : public Base
 
     sdbusplus::asio::object_server& objServer;
     std::shared_ptr<sdbusplus::asio::connection>& systemBus;
+    std::filesystem::path biosFile;
 };
 
 } // namespace bios_config

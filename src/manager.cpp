@@ -15,6 +15,7 @@
 */
 #include "manager.hpp"
 
+#include "manager_serialize.hpp"
 #include "xyz/openbmc_project/BIOSConfig/Common/error.hpp"
 #include "xyz/openbmc_project/Common/error.hpp"
 
@@ -93,7 +94,9 @@ Manager::AttributeDetails Manager::getAttribute(AttributeName attribute)
 Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
 {
     pendingAttributes({});
-    return Base::baseBIOSTable(value, false);
+    auto baseTable = Base::baseBIOSTable(value, false);
+    serialize(*this, biosFile);
+    return baseTable;
 }
 
 Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
@@ -101,7 +104,9 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
     // Clear the pending attributes
     if (value.empty())
     {
-        return Base::pendingAttributes({}, false);
+        auto pendingAttrs = Base::pendingAttributes({}, false);
+        serialize(*this, biosFile);
+        return pendingAttrs;
     }
 
     // Validate all the BIOS attributes before setting PendingAttributes
@@ -255,7 +260,10 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
         pendingAttribute.emplace(std::make_pair(pair.first, pair.second));
     }
 
-    return Base::pendingAttributes(pendingAttribute, false);
+    auto pendingAttrs = Base::pendingAttributes(pendingAttribute, false);
+    serialize(*this, biosFile);
+
+    return pendingAttrs;
 }
 
 Manager::Manager(sdbusplus::asio::object_server& objectServer,
@@ -263,7 +271,12 @@ Manager::Manager(sdbusplus::asio::object_server& objectServer,
     sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(*systemBus,
                                                                  objectPath),
     objServer(objectServer), systemBus(systemBus)
-{}
+{
+    fs::path biosDir(BIOS_PERSIST_PATH);
+    fs::create_directories(biosDir);
+    biosFile = biosDir / biosPersistFile;
+    deserialize(biosFile, *this);
+}
 
 } // namespace bios_config
 

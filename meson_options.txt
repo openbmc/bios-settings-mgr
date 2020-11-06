@@ -1,0 +1,1 @@
+option('bios-persist-path', type : 'string', description : 'The filesystem path to persist the bios-settings-manager object', value : '/var/lib/bios-settings-manager')
