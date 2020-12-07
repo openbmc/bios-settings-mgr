@@ -1,0 +1,9 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+Code-Review+2: Kuiying Wang <kuiying.wang@intel.com>
+Submitted-by: Tom Joseph <tomjoseph@in.ibm.com>
+Submitted-at: Mon, 07 Dec 2020 15:54:17 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/bios-settings-mgr/+/38615
+Project: openbmc/bios-settings-mgr
+Branch: refs/heads/master
