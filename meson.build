@@ -44,6 +44,15 @@ executable('biosconfig-manager',
         install: true,
         install_dir: get_option('bindir'))
 
+executable('biosconfig-password',
+           'src/password.cpp',
+        implicit_include_directories: true,
+        include_directories: ['include'],
+        dependencies: deps,
+        cpp_args : boost_args,
+        install: true,
+        install_dir: get_option('bindir'))
+
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_pkgconfig_variable(
     'systemdsystemunitdir',
@@ -55,4 +64,12 @@ configure_file(
     install: true,
     install_dir: systemd_system_unit_dir,
     output: 'xyz.openbmc_project.biosconfig_manager.service'
+)
+
+configure_file(
+    copy: true,
+    input: 'service_files/xyz.openbmc_project.biosconfig_password.service',
+    install: true,
+    install_dir: systemd_system_unit_dir,
+    output: 'xyz.openbmc_project.biosconfig_password.service'
 )
