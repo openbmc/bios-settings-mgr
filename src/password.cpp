@@ -32,31 +32,53 @@ namespace bios_config_pwd
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace sdbusplus::xyz::openbmc_project::BIOSConfig::Common::Error;
 
-bool Password::isMatch(const std::string expected, const std::string seed,
+uint8_t
+    Password::convertUnicode(const std::string& pwd,
+                             std::array<uint16_t, maxPasswordLen>& unicodePwd)
+{
+    if (pwd.size() > unicodePwd.size())
+    {
+        phosphor::logging::log<phosphor::logging::level::DEBUG>(
+            "password size exceeds unicodePwd array size");
+        throw InternalFailure();
+    }
+
+    for (std::string::size_type i = 0; i < pwd.size(); i++)
+    {
+        unicodePwd[i] = pwd[i];
+    }
+    unicodePwd[pwd.size()] = 0;
+
+    return (pwd.size() * sizeof(uint16_t) + sizeof(uint16_t));
+}
+
+bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
+                       const std::array<uint8_t, maxSeedSize>& seed,
                        const std::string rawData, const std::string algo)
 {
     phosphor::logging::log<phosphor::logging::level::ERR>("isMatch");
-    if (algo == "SHA384")
+
+    if (algo == "SHA256")
     {
-        phosphor::logging::log<phosphor::logging::level::ERR>("SHA384");
-        std::vector<uint8_t> output(SHA384_DIGEST_LENGTH);
-        unsigned int mdLen = 0;
-        if (HMAC(EVP_sha384(), seed.c_str(), seed.length(),
-                 reinterpret_cast<const unsigned char*>(rawData.c_str()),
-                 rawData.length(), output.data(), &mdLen) == NULL)
+        std::vector<uint8_t> output(SHA256_DIGEST_LENGTH);
+        unsigned int hashLen = 0;
+
+        std::array<uint16_t, maxPasswordLen> unicodePwd = {0};
+        uint8_t unicodePwdLength = convertUnicode(rawData, unicodePwd);
+
+        if (HMAC(EVP_sha256(), seed.data(), seed.size(),
+                 reinterpret_cast<const unsigned char*>(unicodePwd.data()),
+                 unicodePwdLength, output.data(), &hashLen) == NULL)
         {
             phosphor::logging::log<phosphor::logging::level::ERR>(
-                "Generate HMAC_SHA384 Integrity Check Value failed");
-            output.resize(0);
+                "Generate HMAC_SHA256 Integrity Check Value failed");
             throw InternalFailure();
         }
-        phosphor::logging::log<phosphor::logging::level::ERR>(expected.c_str());
-        std::string strOutput;
-        boost::algorithm::hex(output.begin(), output.end(),
-                              std::back_inserter(strOutput));
-        phosphor::logging::log<phosphor::logging::level::ERR>(
-            strOutput.c_str());
-        if (expected == strOutput)
+
+        int cmp;
+        cmp = std::memcmp(output.data(), expected.data(),
+                          output.size() * sizeof(uint8_t));
+        if (cmp == 0)
         {
             return true;
         }
@@ -65,6 +87,36 @@ bool Password::isMatch(const std::string expected, const std::string seed,
             return false;
         }
     }
+    if (algo == "SHA384")
+    {
+        std::array<uint8_t, SHA384_DIGEST_LENGTH> output;
+        unsigned int hashLen = 0;
+
+        std::array<uint16_t, maxPasswordLen> unicodePwd = {0};
+        uint8_t unicodePwdLength = convertUnicode(rawData, unicodePwd);
+
+        if (HMAC(EVP_sha384(), seed.data(), seed.size(),
+                 reinterpret_cast<const unsigned char*>(unicodePwd.data()),
+                 unicodePwdLength, output.data(), &hashLen) == NULL)
+        {
+            phosphor::logging::log<phosphor::logging::level::ERR>(
+                "Generate HMAC_SHA384 Integrity Check Value failed");
+            throw InternalFailure();
+        }
+
+        int cmp;
+        cmp = std::memcmp(output.data(), expected.data(),
+                          output.size() * sizeof(uint8_t));
+        if (cmp == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     return false;
 }
 
@@ -73,61 +125,90 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
 {
     if (fs::exists(seedFile.c_str()))
     {
-        std::string userPassword = "";
-        std::string adminPassword = "";
-        std::string seed = "";
+        std::array<uint8_t, maxHashSize> orgUsrPwdHash;
+        std::array<uint8_t, maxHashSize> orgAdminPwdHash;
+        std::array<uint8_t, maxSeedSize> seed;
         std::string hashAlgo = "";
         try
         {
+            nlohmann::json json = nullptr;
             std::ifstream ifs(seedFile.c_str());
-            nlohmann::json json;
-            ifs >> json;
-            userPassword = json["UserPwdHash"];
-            adminPassword = json["AdminPwdHash"];
-            seed = json["Seed"];
-            hashAlgo = json["HashAlgo"];
+            if (ifs.is_open())
+            {
+                try
+                {
+                    json = nlohmann::json::parse(ifs, nullptr, false);
+                }
+                catch (const nlohmann::json::parse_error& e)
+                {
+                    phosphor::logging::log<phosphor::logging::level::ERR>(
+                        e.what());
+                    throw InternalFailure();
+                }
+
+                if (json.is_discarded())
+                {
+                    return;
+                }
+                orgUsrPwdHash = json["UserPwdHash"];
+                orgAdminPwdHash = json["AdminPwdHash"];
+                seed = json["Seed"];
+                hashAlgo = json["HashAlgo"];
+            }
+            else
+            {
+                return;
+            }
         }
         catch (nlohmann::detail::exception& e)
         {
             phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
             throw InternalFailure();
         }
-        if (userName == "Administrator")
+        if (userName == "AdminPassword")
         {
-            if (!isMatch(adminPassword, seed, currentPassword, hashAlgo))
+            if (!isMatch(orgAdminPwdHash, seed, currentPassword, hashAlgo))
             {
                 throw InvalidCurrentPassword();
             }
         }
         else
         {
-            if (!isMatch(userPassword, seed, currentPassword, hashAlgo))
+            if (!isMatch(orgUsrPwdHash, seed, currentPassword, hashAlgo))
             {
                 throw InvalidCurrentPassword();
             }
         }
-        if (hashAlgo == "SHA384")
+        if (hashAlgo == "SHA256")
         {
-            std::vector<uint8_t> output(SHA384_DIGEST_LENGTH);
+            std::array<uint16_t, maxPasswordLen> unicodePwd;
+            uint8_t unicodePwdlength = 0;
             unsigned int mdLen = 0;
-            if (HMAC(
-                    EVP_sha384(), seed.c_str(), seed.length(),
-                    reinterpret_cast<const unsigned char*>(newPassword.c_str()),
-                    newPassword.length(), output.data(), &mdLen) == NULL)
+            unicodePwdlength = convertUnicode(newPassword, unicodePwd);
+            mNewPwdHash.fill(0);
+
+            if (HMAC(EVP_sha256(), seed.data(), seed.size(),
+                     reinterpret_cast<const unsigned char*>(unicodePwd.data()),
+                     unicodePwdlength, mNewPwdHash.data(), &mdLen) == NULL)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "Generate HMAC_SHA384 Integrity Check Value failed");
-                output.resize(0);
                 throw InternalFailure();
             }
-            std::string strOutput;
-            boost::algorithm::hex(output.begin(), output.end(),
-                                  std::back_inserter(strOutput));
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                strOutput.c_str());
-            mNewPassword = strOutput;
         }
+        if (hashAlgo == "SHA384")
+        {
+            std::array<uint16_t, maxPasswordLen> unicodePwd;
+            uint8_t unicodePwdlength = 0;
+            unsigned int mdLen = 0;
+            unicodePwdlength = convertUnicode(newPassword, unicodePwd);
+            mNewPwdHash.fill(0);
 
+            if (HMAC(EVP_sha384(), seed.data(), seed.size(),
+                     reinterpret_cast<const unsigned char*>(unicodePwd.data()),
+                     unicodePwdlength, mNewPwdHash.data(), &mdLen) == NULL)
+            {
+                throw InternalFailure();
+            }
+        }
         return;
     }
     throw InternalFailure();
@@ -139,28 +220,37 @@ void Password::changePassword(std::string userName, std::string currentPassword,
         "BIOS config changePassword");
     verifyPassword(userName, currentPassword, newPassword);
 
-    try
+    std::ifstream fs(seedFile.c_str());
+    nlohmann::json json = nullptr;
+
+    if (fs.is_open())
     {
-        nlohmann::json json;
-        json["UserName"] = userName;
-        json["CurrentPassword"] = currentPassword;
-        json["NewPassword"] = mNewPassword;
-        if (userName == "Administrator")
+        try
         {
-            json["IsAdminPwdChanged"] = 1;
-            json["IsUserPwdChanged"] = 0;
+            json = nlohmann::json::parse(fs, nullptr, false);
         }
-        else
+        catch (const nlohmann::json::parse_error& e)
         {
-            json["IsAdminPwdChanged"] = 0;
-            json["IsUserPwdChanged"] = 1;
+            phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+            throw InternalFailure();
         }
-        std::ofstream ofs(passwordFile.c_str(), std::ios::out);
-        ofs << std::setw(4) << json << std::endl;
+
+        if (json.is_discarded())
+        {
+            throw InternalFailure();
+        }
+        json["AdminPwdHash"] = mNewPwdHash;
+        json["IsAdminPwdChanged"] = true;
+
+        std::ofstream ofs(seedFile.c_str(), std::ios::out);
+        const auto& writeData = json.dump();
+        ofs << writeData;
+        ofs.close();
     }
-    catch (nlohmann::detail::exception& e)
+    else
     {
-        phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+        phosphor::logging::log<phosphor::logging::level::DEBUG>(
+            "Cannot open file stream");
         throw InternalFailure();
     }
 }
@@ -176,7 +266,6 @@ Password::Password(sdbusplus::asio::object_server& objectServer,
     {
         fs::path biosDir(BIOS_PERSIST_PATH);
         fs::create_directories(biosDir);
-        passwordFile = biosDir / biosPasswordFile;
         seedFile = biosDir / biosSeedFile;
     }
     catch (const fs::filesystem_error& e)
