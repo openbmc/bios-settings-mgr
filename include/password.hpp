@@ -36,6 +36,9 @@ static constexpr auto objectPathPwd =
     "/xyz/openbmc_project/bios_config/password";
 constexpr auto biosPasswordFile = "passwordData";
 constexpr auto biosSeedFile = "seedData";
+constexpr uint8_t maxHashSize = 64;
+constexpr uint8_t maxSeedSize = 32;
+constexpr uint16_t maxPasswordLen = 32;
 
 using Base = sdbusplus::xyz::openbmc_project::BIOSConfig::server::Password;
 namespace fs = std::filesystem;
@@ -73,15 +76,17 @@ class Password : public Base
                         std::string newPassword) override;
 
   private:
+    uint8_t convertUnicode(const std::string& pwd,
+                           std::array<uint16_t, maxPasswordLen>& unicodePwd);
     void verifyPassword(std::string userName, std::string currentPassword,
                         std::string newPassword);
-    bool isMatch(const std::string expected, const std::string seed,
+    bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
+                 const std::array<uint8_t, maxSeedSize>& seed,
                  const std::string rawData, const std::string algo);
     sdbusplus::asio::object_server& objServer;
     std::shared_ptr<sdbusplus::asio::connection>& systemBus;
-    std::filesystem::path passwordFile;
     std::filesystem::path seedFile;
-    std::string mNewPassword;
+    std::array<uint8_t, maxHashSize> mNewPwdHash;
 };
 
 } // namespace bios_config_pwd
