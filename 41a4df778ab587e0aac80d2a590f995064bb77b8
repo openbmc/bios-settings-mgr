@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "e5cecaf3_b8e1f3f4",
+        "filename": "src/password.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-05-26T07:06:21Z",
+      "side": 1,
+      "message": "Yes . In BIOS, NULL character will be stored in 2 bytes.",
+      "parentUuid": "4d33487d_c7b27008",
+      "range": {
+        "startLine": 64,
+        "startChar": 17,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "41a4df778ab587e0aac80d2a590f995064bb77b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d443851_ededd3d2",
         "filename": "src/password.cpp",
         "patchSetId": 1
