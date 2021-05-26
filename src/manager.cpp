@@ -97,6 +97,7 @@ Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
     pendingAttributes({});
     auto baseTable = Base::baseBIOSTable(value, false);
     serialize(*this, biosFile);
+    Base::resetBIOSSettings(Base::ResetFlag::NoAction);
     return baseTable;
 }
 
