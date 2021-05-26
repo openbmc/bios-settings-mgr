@@ -49,6 +49,8 @@ class Manager : public Base
                    std::vector<std::tuple<
                        BoundType, std::variant<int64_t, std::string>>>>>;
 
+    using ResetFlag = std::map<std::string, ResetFlag>;
+
     using PendingAttributes =
         std::map<std::string,
                  std::tuple<AttributeType, std::variant<int64_t, std::string>>>;
@@ -105,6 +107,8 @@ class Manager : public Base
      *  @return The new BaseBIOSTable that is applied.
      */
     BaseTable baseBIOSTable(BaseTable value) override;
+
+    ResetFlag resetBIOSSettings(ResetFlag value);
 
     /** @brief Set the PendingAttributes property, additionally checks if the
      *         attributes are in the BaseBIOSTable, whether the attributes are
