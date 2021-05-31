@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e4b148a_db5d05a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-05-31T02:54:24Z",
+      "side": 1,
+      "message": "Make testing is based on existing OOB daemon, if no please attach changed link here.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "96e72ec579ea3c19ddbde4151d9f26d988c47fa6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c917c013_432eb332",
+        "filename": "src/password.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-05-31T02:54:24Z",
+      "side": 1,
+      "message": "Need make sure there is no new key added and key changed.",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 41
+      },
+      "revId": "96e72ec579ea3c19ddbde4151d9f26d988c47fa6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
