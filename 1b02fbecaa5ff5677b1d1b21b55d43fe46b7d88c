@@ -140,6 +140,57 @@
       "revId": "1b02fbecaa5ff5677b1d1b21b55d43fe46b7d88c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2fd933aa_3ed75a25",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-06-01T15:46:41Z",
+      "side": 1,
+      "message": "This is not correct test case. This workaround as bios is not ready.",
+      "revId": "1b02fbecaa5ff5677b1d1b21b55d43fe46b7d88c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ec555f_58c00301",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-06-01T15:46:41Z",
+      "side": 1,
+      "message": "Correct test case should be we have to reset the ResetBIOSSetting flag whenever we BMC recvd the updated BaseTable from BIOS.",
+      "revId": "1b02fbecaa5ff5677b1d1b21b55d43fe46b7d88c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ad59549_49feefad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-06-01T15:46:41Z",
+      "side": 1,
+      "message": "Adding this command will confuse everyone.",
+      "revId": "1b02fbecaa5ff5677b1d1b21b55d43fe46b7d88c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
