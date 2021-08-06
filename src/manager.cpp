@@ -124,14 +124,6 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             throw AttributeNotFound();
         }
 
-        // BIOS attribute is read only
-        if (std::get<static_cast<uint8_t>(Index::readOnly)>(iter->second))
-        {
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                "BIOS attribute is read only");
-            throw AttributeReadOnly();
-        }
-
         auto attributeType =
             std::get<static_cast<uint8_t>(Index::attributeType)>(iter->second);
         if (attributeType != std::get<0>(pair.second))
