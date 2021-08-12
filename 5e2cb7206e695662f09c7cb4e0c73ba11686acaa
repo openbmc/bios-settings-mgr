@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd210c07_9e528c89",
+        "filename": "src/manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-08-12T11:08:04Z",
+      "side": 0,
+      "message": "we can remove this set the readonly attribute in bios-setting-daemon\nbut in bmcweb, we need to check the same before accepting the accepting data. which is not present currently.\nor else we need to bypass this check based on requestor.",
+      "revId": "5e2cb7206e695662f09c7cb4e0c73ba11686acaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
