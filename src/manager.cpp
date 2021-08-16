@@ -183,29 +183,23 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
                 std::get<std::string>(std::get<1>(pair.second));
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
-            int64_t minStringLength = 0;
-            int64_t maxStringLength = 0;
 
-            for (const auto& stringOptions : options)
+            auto optionsIterator = options.begin();
+
+            for (; optionsIterator != options.end(); ++optionsIterator)
             {
-                if (BoundType::MinStringLength == std::get<0>(stringOptions))
+                if (std::get<1>(std::get<1>(*optionsIterator)) == attrValue)
                 {
-                    minStringLength =
-                        std::get<int64_t>(std::get<1>(stringOptions));
-                }
-                else if (BoundType::MaxStringLength ==
-                         std::get<0>(stringOptions))
-                {
-                    maxStringLength =
-                        std::get<int64_t>(std::get<1>(stringOptions));
+                    break;
                 }
             }
 
-            if ((attrValue.length() < static_cast<size_t>(minStringLength)) ||
-                (attrValue.length() > static_cast<size_t>(maxStringLength)))
+            if (optionsIterator == options.end())
             {
+                std::string error =
+                    attrValue + " is not a valid value for " + pair.first;
                 phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "std::string, length is invalid");
+                    error.c_str());
                 throw InvalidArgument();
             }
         }
