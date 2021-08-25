@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5d5cc95d_07bb461c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-08-25T16:19:47Z",
+      "side": 1,
+      "message": "Will change this.",
+      "parentUuid": "7ebe09c5_5cb3a12c",
+      "revId": "f711d8d1e2e48b284bf595c9b74af01c7475fcce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7b81f6c_adeda533",
         "filename": "src/manager.cpp",
         "patchSetId": 1
@@ -54,6 +72,30 @@
       "side": 1,
       "message": "+1.\nPlease check: https://gerrit.openbmc-project.xyz/c/openbmc/bios-settings-mgr/+/45665",
       "parentUuid": "a7b81f6c_adeda533",
+      "range": {
+        "startLine": 127,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 9
+      },
+      "revId": "f711d8d1e2e48b284bf595c9b74af01c7475fcce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea33bfc9_d3d8db3c",
+        "filename": "src/manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-08-25T16:19:47Z",
+      "side": 1,
+      "message": "Will address this.",
+      "parentUuid": "33f56493_0035717a",
       "range": {
         "startLine": 127,
         "startChar": 7,
