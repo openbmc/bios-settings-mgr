@@ -105,6 +105,30 @@
       "revId": "f711d8d1e2e48b284bf595c9b74af01c7475fcce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e581cfc_f8a197ac",
+        "filename": "src/manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-08-26T05:45:10Z",
+      "side": 1,
+      "message": "yes, arun, I forgot this. Please address the Eda comments else it will break readonly attribute update from pldm daemon.",
+      "parentUuid": "ea33bfc9_d3d8db3c",
+      "range": {
+        "startLine": 127,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 9
+      },
+      "revId": "f711d8d1e2e48b284bf595c9b74af01c7475fcce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
