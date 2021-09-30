@@ -76,8 +76,6 @@ class Password : public Base
                         std::string newPassword) override;
 
   private:
-    uint8_t convertUnicode(const std::string& pwd,
-                           std::array<uint16_t, maxPasswordLen>& unicodePwd);
     void verifyPassword(std::string userName, std::string currentPassword,
                         std::string newPassword);
     bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
