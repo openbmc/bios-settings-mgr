@@ -39,6 +39,7 @@ constexpr auto biosSeedFile = "seedData";
 constexpr uint8_t maxHashSize = 64;
 constexpr uint8_t maxSeedSize = 32;
 constexpr uint8_t maxPasswordLen = 32;
+constexpr int iterValue = 1000;
 
 using Base = sdbusplus::xyz::openbmc_project::BIOSConfig::server::Password;
 namespace fs = std::filesystem;
@@ -76,8 +77,6 @@ class Password : public Base
                         std::string newPassword) override;
 
   private:
-    uint8_t convertUnicode(const std::string& pwd,
-                           std::array<uint16_t, maxPasswordLen>& unicodePwd);
     void verifyPassword(std::string userName, std::string currentPassword,
                         std::string newPassword);
     bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
