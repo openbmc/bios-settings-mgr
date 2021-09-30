@@ -32,26 +32,6 @@ namespace bios_config_pwd
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace sdbusplus::xyz::openbmc_project::BIOSConfig::Common::Error;
 
-uint8_t
-    Password::convertUnicode(const std::string& pwd,
-                             std::array<uint16_t, maxPasswordLen>& unicodePwd)
-{
-    if (pwd.size() > unicodePwd.size())
-    {
-        phosphor::logging::log<phosphor::logging::level::DEBUG>(
-            "password size exceeds unicodePwd array size");
-        throw InternalFailure();
-    }
-
-    for (std::string::size_type i = 0; i < pwd.size(); i++)
-    {
-        unicodePwd[i] = pwd[i];
-    }
-    unicodePwd[pwd.size()] = 0;
-
-    return (pwd.size() * sizeof(uint16_t) + sizeof(uint16_t));
-}
-
 bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                        const std::array<uint8_t, maxSeedSize>& seed,
                        const std::string rawData, const std::string algo)
@@ -61,17 +41,17 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
     if (algo == "SHA256")
     {
         std::vector<uint8_t> output(SHA256_DIGEST_LENGTH);
-        unsigned int hashLen = 0;
+        unsigned int hashLen = SHA256_DIGEST_LENGTH;
 
-        std::array<uint16_t, maxPasswordLen> unicodePwd = {0};
-        uint8_t unicodePwdLength = convertUnicode(rawData, unicodePwd);
-
-        if (HMAC(EVP_sha256(), seed.data(), seed.size(),
-                 reinterpret_cast<const unsigned char*>(unicodePwd.data()),
-                 unicodePwdLength, output.data(), &hashLen) == NULL)
+        if (!PKCS5_PBKDF2_HMAC(
+                reinterpret_cast<const char*>(rawData.c_str()),
+                rawData.length() + 1,
+                reinterpret_cast<const unsigned char*>(seed.data()),
+                seed.size(), 1000, EVP_sha256(), hashLen, output.data()))
         {
             phosphor::logging::log<phosphor::logging::level::ERR>(
-                "Generate HMAC_SHA256 Integrity Check Value failed");
+                "Generate PKCS5_PBKDF2_HMAC_SHA256 Integrity Check Value "
+                "failed");
             throw InternalFailure();
         }
 
@@ -90,17 +70,17 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
     if (algo == "SHA384")
     {
         std::array<uint8_t, SHA384_DIGEST_LENGTH> output;
-        unsigned int hashLen = 0;
+        unsigned int hashLen = SHA384_DIGEST_LENGTH;
 
-        std::array<uint16_t, maxPasswordLen> unicodePwd = {0};
-        uint8_t unicodePwdLength = convertUnicode(rawData, unicodePwd);
-
-        if (HMAC(EVP_sha384(), seed.data(), seed.size(),
-                 reinterpret_cast<const unsigned char*>(unicodePwd.data()),
-                 unicodePwdLength, output.data(), &hashLen) == NULL)
+        if (!PKCS5_PBKDF2_HMAC(
+                reinterpret_cast<const char*>(rawData.c_str()),
+                rawData.length() + 1,
+                reinterpret_cast<const unsigned char*>(seed.data()),
+                seed.size(), 1000, EVP_sha384(), hashLen, output.data()))
         {
             phosphor::logging::log<phosphor::logging::level::ERR>(
-                "Generate HMAC_SHA384 Integrity Check Value failed");
+                "Generate PKCS5_PBKDF2_HMAC_SHA384 Integrity Check Value "
+                "failed");
             throw InternalFailure();
         }
 
@@ -181,31 +161,33 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
         }
         if (hashAlgo == "SHA256")
         {
-            std::array<uint16_t, maxPasswordLen> unicodePwd;
-            uint8_t unicodePwdlength = 0;
-            unsigned int mdLen = 0;
-            unicodePwdlength = convertUnicode(newPassword, unicodePwd);
+            unsigned int mdLen = 32;
             mNewPwdHash.fill(0);
 
-            if (HMAC(EVP_sha256(), seed.data(), seed.size(),
-                     reinterpret_cast<const unsigned char*>(unicodePwd.data()),
-                     unicodePwdlength, mNewPwdHash.data(), &mdLen) == NULL)
+            if (!PKCS5_PBKDF2_HMAC(
+                    reinterpret_cast<const char*>(newPassword.c_str()),
+                    newPassword.length() + 1,
+                    reinterpret_cast<const unsigned char*>(seed.data()),
+                    seed.size(), 1000, EVP_sha256(), mdLen, mNewPwdHash.data()))
             {
+                phosphor::logging::log<phosphor::logging::level::ERR>(
+                    "Verify PKCS5_PBKDF2_HMAC_SHA256 Integrity Check failed");
                 throw InternalFailure();
             }
         }
         if (hashAlgo == "SHA384")
         {
-            std::array<uint16_t, maxPasswordLen> unicodePwd;
-            uint8_t unicodePwdlength = 0;
-            unsigned int mdLen = 0;
-            unicodePwdlength = convertUnicode(newPassword, unicodePwd);
+            unsigned int mdLen = 48;
             mNewPwdHash.fill(0);
 
-            if (HMAC(EVP_sha384(), seed.data(), seed.size(),
-                     reinterpret_cast<const unsigned char*>(unicodePwd.data()),
-                     unicodePwdlength, mNewPwdHash.data(), &mdLen) == NULL)
+            if (!PKCS5_PBKDF2_HMAC(
+                    reinterpret_cast<const char*>(newPassword.c_str()),
+                    newPassword.length() + 1,
+                    reinterpret_cast<const unsigned char*>(seed.data()),
+                    seed.size(), 1000, EVP_sha384(), mdLen, mNewPwdHash.data()))
             {
+                phosphor::logging::log<phosphor::logging::level::ERR>(
+                    "Verify PKCS5_PBKDF2_HMAC_SHA384 Integrity Check failed");
                 throw InternalFailure();
             }
         }
