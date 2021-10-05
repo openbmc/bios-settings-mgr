@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "decb9c7f_c6b79b2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000411
+      },
+      "writtenOn": "2021-10-05T15:00:03Z",
+      "side": 1,
+      "message": "Bios change password action support was already there. Issue is with BMC not able to regenerate the same hash using same bios given seed and user given password for BIOS Password verification in BMC side. \n\nPlease modify commit message. \nFix: fail to change BIOS Admin Password through BMC ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "cfdcbfb5550b3a171ce0bd9be33d97cb641a2557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cff02a_fa35f7da",
+        "filename": "src/password.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000411
+      },
+      "writtenOn": "2021-10-05T15:00:03Z",
+      "side": 1,
+      "message": "magic no?  \nCan be declared as constexpr and placed above in the file. This iteration count value is used at many places in the code.",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 33
+      },
+      "revId": "cfdcbfb5550b3a171ce0bd9be33d97cb641a2557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09cd75e5_d00b02b5",
+        "filename": "src/password.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000411
+      },
+      "writtenOn": "2021-10-05T15:00:03Z",
+      "side": 1,
+      "message": "magic no?\nCan be declared as constexpr too, this iteration count value is used at many places in the code",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 33
+      },
+      "revId": "cfdcbfb5550b3a171ce0bd9be33d97cb641a2557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5815b82_de850151",
+        "filename": "src/password.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000411
+      },
+      "writtenOn": "2021-10-05T15:00:03Z",
+      "side": 1,
+      "message": "same \nand LN187 too",
+      "range": {
+        "startLine": 171,
+        "startChar": 33,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "cfdcbfb5550b3a171ce0bd9be33d97cb641a2557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
