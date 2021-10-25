@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46fb9990_79ad70f2",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-10-25T09:36:13Z",
+      "side": 1,
+      "message": "Please remove kuiying,wang. He left Intel and add arun.lal@intel.com",
+      "revId": "29656f07b7e81c0bb13ca119b4c6ef62f5e79a18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5023432_19ee9ffb",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-10-25T09:36:13Z",
+      "side": 1,
+      "message": "Please remove kuiying, wang and add arun.lal@intel.com",
+      "revId": "29656f07b7e81c0bb13ca119b4c6ef62f5e79a18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83826610_1f97abc6",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000295
+      },
+      "writtenOn": "2021-10-25T09:36:13Z",
+      "side": 1,
+      "message": "Arun \u0027s discord id is arunlalkm-intel",
+      "revId": "29656f07b7e81c0bb13ca119b4c6ef62f5e79a18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
