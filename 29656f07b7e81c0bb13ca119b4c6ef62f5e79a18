@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "80d7d2d4_1bdba9c6",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-10-26T02:54:48Z",
+      "side": 1,
+      "message": "+1. \n\nThanks Manoj for fixing the owners file.\n\nSurya, Please submit separate patch on top of this to remove Kuiying wang name.",
+      "parentUuid": "11ba27d2_dcff8413",
+      "revId": "29656f07b7e81c0bb13ca119b4c6ef62f5e79a18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5023432_19ee9ffb",
         "filename": "OWNERS",
         "patchSetId": 1
