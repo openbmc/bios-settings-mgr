@@ -180,20 +180,34 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
 
-            auto optionsIterator = options.begin();
-
-            for (; optionsIterator != options.end(); ++optionsIterator)
+            size_t minStringLength = 0;
+            size_t maxStringLength = 0;
+            for (const auto& stringOptions : options)
             {
-                if (std::get<1>(std::get<1>(*optionsIterator)) == attrValue)
+                if (BoundType::MinStringLength == std::get<0>(stringOptions))
                 {
-                    break;
+                    minStringLength =
+                        std::get<int64_t>(std::get<1>(stringOptions));
+                }
+                else if (BoundType::MaxStringLength ==
+                         std::get<0>(stringOptions))
+                {
+                    maxStringLength =
+                        std::get<int64_t>(std::get<1>(stringOptions));
+                }
+                else
+                {
+                    continue;
                 }
             }
 
-            if (optionsIterator == options.end())
+            if (attrValue.length() < minStringLength ||
+                attrValue.length() > maxStringLength)
             {
-                lg2::error("{ATTRVALUE} is not a valid value for {NAME}",
-                           "ATTRVALUE", attrValue, "NAME", pair.first);
+                lg2::error(
+                    "{ATTRVALUE} Length is out of range, bound is invalid, maxStringLength = {MAXLEN}, minStringLength = {MINLEN}",
+                    "ATTRVALUE", attrValue, "MAXLEN", maxStringLength, "MINLEN",
+                    minStringLength);
                 throw InvalidArgument();
             }
         }
