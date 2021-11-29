@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ca77743_73e0355d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-29T13:28:36Z",
+      "side": 1,
+      "message": "To resolve std::get\u003c1\u003e exception we can use std::get_if or std::holds_alternative.",
+      "range": {
+        "startLine": 11,
+        "startChar": 44,
+        "endLine": 11,
+        "endChar": 67
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c1d8d97_8a97e285",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-29T13:28:36Z",
+      "side": 1,
+      "message": "Please avoid tab and use spaces.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 1
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dba9923_d2348a77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-29T13:28:36Z",
+      "side": 1,
+      "message": "Keep commit message within 80 character per line.",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3970d5a_3f97c797",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-29T13:28:36Z",
+      "side": 1,
+      "message": "If you are writing code to check bound, add it as separate code rather than removing the existing check. \n\nLike I mentioned in comment in earlier patch, the code that you are replacing is checking if new value in set operation is a valid value or not. And that check is performed by looking if the new value is in options list.",
+      "range": {
+        "startLine": 37,
+        "startChar": 51,
+        "endLine": 37,
+        "endChar": 60
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5813ac5_796b908c",
+        "filename": "src/manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-29T13:28:36Z",
+      "side": 1,
+      "message": "Options is the array of all possible values. Which means if attrValue is not part of options, then it is not a valid value. \n\nSo instead of checking for does attrValue have length in between min and max bound. We can just check if attrValue is in options.\n\nIf I am missing something here please explain to me.",
+      "range": {
+        "startLine": 189,
+        "startChar": 45,
+        "endLine": 189,
+        "endChar": 52
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
