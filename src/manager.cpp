@@ -184,22 +184,38 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
 
-            auto optionsIterator = options.begin();
-
-            for (; optionsIterator != options.end(); ++optionsIterator)
+            size_t minStringLength = 0;
+            size_t maxStringLength = 0;
+            for (const auto& stringOptions : options)
             {
-                if (std::get<1>(std::get<1>(*optionsIterator)) == attrValue)
+                if (BoundType::MinStringLength == std::get<0>(stringOptions))
                 {
-                    break;
+                    minStringLength =
+                        std::get<int64_t>(std::get<1>(stringOptions));
+                }
+                else if (BoundType::MaxStringLength ==
+                         std::get<0>(stringOptions))
+                {
+                    maxStringLength =
+                        std::get<int64_t>(std::get<1>(stringOptions));
+                }
+                else
+                {
+                    continue;
                 }
             }
 
-            if (optionsIterator == options.end())
+            if (attrValue.length() < minStringLength ||
+                attrValue.length() > maxStringLength)
             {
-                std::string error =
-                    attrValue + " is not a valid value for " + pair.first;
                 phosphor::logging::log<phosphor::logging::level::ERR>(
-                    error.c_str());
+                    "String Length is out of range, bound is invalid",
+                    phosphor::logging::entry("ATTRVALUE = %s",
+                                             attrValue.c_str()),
+                    phosphor::logging::entry("MAX_STRING_LENGTH = %d",
+                                             maxStringLength),
+                    phosphor::logging::entry("MIN_STRING_LENGTH = %d",
+                                             minStringLength));
                 throw InvalidArgument();
             }
         }
