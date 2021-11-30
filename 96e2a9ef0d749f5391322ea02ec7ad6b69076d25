@@ -234,6 +234,30 @@
       "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01363966_5c5e7cf0",
+        "filename": "src/manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-11-30T05:01:19Z",
+      "side": 1,
+      "message": "Let us take an example of a BIOS knob that can take values 0x01, 0x02 and 0x03. \nand let us assume default and current vales are 0x01.\n\nSo using OOB functionality when a user is trying to set this knob with value 0x02. \nattrValue is 0x02, and Options will be array of 0x01, 0x02 and 0x03. \n\nSo if you are saying options is not a place that holds the possible set of values, where is the \u0027possible set of values\u0027 stored?",
+      "parentUuid": "9d00fed3_6c69eb3c",
+      "range": {
+        "startLine": 189,
+        "startChar": 45,
+        "endLine": 189,
+        "endChar": 52
+      },
+      "revId": "96e2a9ef0d749f5391322ea02ec7ad6b69076d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
