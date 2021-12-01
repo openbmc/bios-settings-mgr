@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9107e2d9_6de525b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-12-01T15:51:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this test is showing us? Can you put an invalid string in and verify we get the expected exception with a log indicating the invalid string?",
+      "revId": "04c59495979d9d8c18eb630a0ecb9538b43e9bdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14650d86_e860deeb",
+        "filename": "src/manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-12-01T15:51:33Z",
+      "side": 1,
+      "message": "This still doesn\u0027t seem to provide the debug info we need? i.e. Can we put something in this log that indicates which string has the issue so it\u0027s easy to debug?",
+      "revId": "04c59495979d9d8c18eb630a0ecb9538b43e9bdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
