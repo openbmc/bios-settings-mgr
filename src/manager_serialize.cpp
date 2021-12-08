@@ -7,14 +7,12 @@
 #include <cereal/types/tuple.hpp>
 #include <cereal/types/variant.hpp>
 #include <cereal/types/vector.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <fstream>
 
 namespace bios_config
 {
-
-using namespace phosphor::logging;
 
 /** @brief Function required by Cereal to perform serialization.
  *
@@ -77,13 +75,13 @@ bool deserialize(const fs::path& path, Manager& entry)
     }
     catch (cereal::Exception& e)
     {
-        log<level::ERR>(e.what());
+        lg2::error(e.what());
         fs::remove(path);
         return false;
     }
     catch (const std::length_error& e)
     {
-        log<level::ERR>(e.what());
+        lg2::error(e.what());
         fs::remove(path);
         return false;
     }

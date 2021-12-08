@@ -21,6 +21,7 @@
 #include <boost/algorithm/hex.hpp>
 #include <boost/asio.hpp>
 #include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
@@ -36,7 +37,7 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                        const std::array<uint8_t, maxSeedSize>& seed,
                        const std::string rawData, const std::string algo)
 {
-    phosphor::logging::log<phosphor::logging::level::ERR>("isMatch");
+    lg2::error("isMatch");
 
     if (algo == "SHA256")
     {
@@ -49,9 +50,8 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                 reinterpret_cast<const unsigned char*>(seed.data()),
                 seed.size(), iterValue, EVP_sha256(), hashLen, output.data()))
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                "Generate PKCS5_PBKDF2_HMAC_SHA256 Integrity Check Value "
-                "failed");
+            lg2::error(
+                "Generate PKCS5_PBKDF2_HMAC_SHA256 Integrity Check Value failed");
             throw InternalFailure();
         }
 
@@ -78,9 +78,8 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                 reinterpret_cast<const unsigned char*>(seed.data()),
                 seed.size(), iterValue, EVP_sha384(), hashLen, output.data()))
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                "Generate PKCS5_PBKDF2_HMAC_SHA384 Integrity Check Value "
-                "failed");
+            lg2::error(
+                "Generate PKCS5_PBKDF2_HMAC_SHA384 Integrity Check Value failed");
             throw InternalFailure();
         }
 
@@ -121,8 +120,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
                 }
                 catch (const nlohmann::json::parse_error& e)
                 {
-                    phosphor::logging::log<phosphor::logging::level::ERR>(
-                        e.what());
+                    lg2::error(e.what());
                     throw InternalFailure();
                 }
 
@@ -142,7 +140,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
         }
         catch (nlohmann::detail::exception& e)
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+            lg2::error(e.what());
             throw InternalFailure();
         }
         if (userName == "AdminPassword")
@@ -171,7 +169,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
                     seed.size(), iterValue, EVP_sha256(), mdLen,
                     mNewPwdHash.data()))
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
+                lg2::error(
                     "Verify PKCS5_PBKDF2_HMAC_SHA256 Integrity Check failed");
                 throw InternalFailure();
             }
@@ -188,7 +186,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
                     seed.size(), iterValue, EVP_sha384(), mdLen,
                     mNewPwdHash.data()))
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
+                lg2::error(
                     "Verify PKCS5_PBKDF2_HMAC_SHA384 Integrity Check failed");
                 throw InternalFailure();
             }
@@ -200,8 +198,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
 void Password::changePassword(std::string userName, std::string currentPassword,
                               std::string newPassword)
 {
-    phosphor::logging::log<phosphor::logging::level::DEBUG>(
-        "BIOS config changePassword");
+    lg2::debug("BIOS config changePassword");
     verifyPassword(userName, currentPassword, newPassword);
 
     std::ifstream fs(seedFile.c_str());
@@ -215,7 +212,7 @@ void Password::changePassword(std::string userName, std::string currentPassword,
         }
         catch (const nlohmann::json::parse_error& e)
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+            lg2::error(e.what());
             throw InternalFailure();
         }
 
@@ -233,8 +230,7 @@ void Password::changePassword(std::string userName, std::string currentPassword,
     }
     else
     {
-        phosphor::logging::log<phosphor::logging::level::DEBUG>(
-            "Cannot open file stream");
+        lg2::debug("Cannot open file stream");
         throw InternalFailure();
     }
 }
@@ -244,8 +240,7 @@ Password::Password(sdbusplus::asio::object_server& objectServer,
         *systemBus, objectPathPwd),
     objServer(objectServer), systemBus(systemBus)
 {
-    phosphor::logging::log<phosphor::logging::level::DEBUG>(
-        "BIOS config password is runing");
+    lg2::debug("BIOS config password is runing");
     try
     {
         fs::path biosDir(BIOS_PERSIST_PATH);
@@ -254,7 +249,7 @@ Password::Password(sdbusplus::asio::object_server& objectServer,
     }
     catch (const fs::filesystem_error& e)
     {
-        phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+        lg2::error(e.what());
         throw InternalFailure();
     }
 }

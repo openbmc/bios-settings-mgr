@@ -21,6 +21,7 @@
 
 #include <boost/asio.hpp>
 #include <phosphor-logging/elog-errors.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
@@ -119,8 +120,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
         // BIOS attribute not found in the BaseBIOSTable
         if (iter == biosTable.end())
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                "BIOS attribute not found in the BaseBIOSTable");
+            lg2::error("BIOS attribute not found in the BaseBIOSTable");
             throw AttributeNotFound();
         }
 
@@ -128,8 +128,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             std::get<static_cast<uint8_t>(Index::attributeType)>(iter->second);
         if (attributeType != std::get<0>(pair.second))
         {
-            phosphor::logging::log<phosphor::logging::level::ERR>(
-                "attributeType is not same with bios base table");
+            lg2::error("attributeType is not same with bios base table");
             throw InvalidArgument();
         }
 
@@ -139,8 +138,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             // For enumeration the expected variant types is Enumeration
             if (std::get<1>(pair.second).index() == 0)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "Enumeration property value is not enum");
+                lg2::error("Enumeration property value is not enum");
                 throw InvalidArgument();
             }
 
@@ -163,8 +161,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
             if (!found)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "No valid attribute");
+                lg2::error("No valid attribute");
                 throw InvalidArgument();
             }
         }
@@ -174,8 +171,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             // For enumeration the expected variant types is std::string
             if (std::get<1>(pair.second).index() == 0)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "String property value is not string");
+                lg2::error("String property value is not string");
                 throw InvalidArgument();
             }
 
@@ -196,10 +192,8 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
             if (optionsIterator == options.end())
             {
-                std::string error =
-                    attrValue + " is not a valid value for " + pair.first;
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    error.c_str());
+                lg2::error("{ATTRVALUE} is not a valid value for {NAME}",
+                           "ATTRVALUE", attrValue, "NAME", pair.first);
                 throw InvalidArgument();
             }
         }
@@ -209,8 +203,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             // For enumeration the expected variant types is Integer
             if (std::get<1>(pair.second).index() == 1)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "Enumeration property value is not int");
+                lg2::error("Enumeration property value is not int");
                 throw InvalidArgument();
             }
 
@@ -241,16 +234,14 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
             if ((attrValue < lowerBound) || (attrValue > upperBound))
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "Integer, bound is invalid");
+                lg2::error("Integer, bound is invalid");
                 throw InvalidArgument();
             }
 
             if (((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
             {
-                phosphor::logging::log<phosphor::logging::level::ERR>(
-                    "((std::abs(attrValue - lowerBound)) % scalarIncrement) != "
-                    "0");
+                lg2::error(
+                    "((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0");
                 throw InvalidArgument();
             }
         }
