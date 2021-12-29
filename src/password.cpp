@@ -35,7 +35,7 @@ using namespace sdbusplus::xyz::openbmc_project::BIOSConfig::Common::Error;
 
 bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                        const std::array<uint8_t, maxSeedSize>& seed,
-                       const std::string rawData, const std::string algo)
+                       const std::string& rawData, const std::string& algo)
 {
     lg2::error("isMatch");
 
