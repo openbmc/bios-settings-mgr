@@ -81,7 +81,7 @@ class Password : public Base
                         std::string newPassword);
     bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
                  const std::array<uint8_t, maxSeedSize>& seed,
-                 const std::string rawData, const std::string algo);
+                 const std::string& rawData, const std::string& algo);
     sdbusplus::asio::object_server& objServer;
     std::shared_ptr<sdbusplus::asio::connection>& systemBus;
     std::filesystem::path seedFile;

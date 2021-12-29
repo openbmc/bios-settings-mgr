@@ -252,7 +252,8 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
                 throw InvalidArgument();
             }
 
-            if (((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
+            if (scalarIncrement == 0 ||
+                ((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
             {
                 lg2::error(
                     "((std::abs({ATTR_VALUE} - {LOWER_BOUND})) % {SCALAR_INCREMENT}) != 0",
