@@ -29,7 +29,9 @@ void save(Archive& archive, const Manager& entry,
     archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
                 baseBIOSTable(),
             entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
-                pendingAttributes());
+                pendingAttributes(),
+            entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
+                enableAfterReset());
 }
 
 /** @brief Function required by Cereal to perform deserialization.
@@ -45,12 +47,15 @@ void load(Archive& archive, Manager& entry, const std::uint32_t /*version*/)
 {
     Manager::BaseTable baseTable;
     Manager::PendingAttributes pendingAttrs;
+    bool enableAfterResetFlag;
 
-    archive(baseTable, pendingAttrs);
+    archive(baseTable, pendingAttrs, enableAfterResetFlag);
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         baseBIOSTable(baseTable, true);
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         pendingAttributes(pendingAttrs, true);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
+        enableAfterReset(enableAfterResetFlag, true);
 }
 
 void serialize(const Manager& obj, const fs::path& path)

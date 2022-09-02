@@ -102,6 +102,13 @@ Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
     return baseTable;
 }
 
+bool Manager::enableAfterReset(bool value)
+{
+    auto enableAfterResetFlag = Base::enableAfterReset(value, false);
+    serialize(*this, biosFile);
+    return enableAfterResetFlag;
+}
+
 Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 {
     // Clear the pending attributes

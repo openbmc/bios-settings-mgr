@@ -108,6 +108,8 @@ class Manager : public Base
      */
     BaseTable baseBIOSTable(BaseTable value) override;
 
+    bool enableAfterReset(bool value) override;
+
     ResetFlag resetBIOSSettings(ResetFlag value);
 
     /** @brief Set the PendingAttributes property, additionally checks if the
