@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a621d875_01bd4a9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2022-12-13T02:57:26Z",
+      "side": 1,
+      "message": "Hi Tejas,\nYou need to follow up the comments in the interface repo and make sure the interface definition accept before to pass this build and verification.\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/56945",
+      "revId": "f658cfcab6f4c53ccc4e6663d98bec129e58ae56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
