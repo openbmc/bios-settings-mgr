@@ -79,6 +79,10 @@ class Password : public Base
   private:
     void verifyPassword(std::string userName, std::string currentPassword,
                         std::string newPassword);
+    bool compareDigest(const EVP_MD* digestFunc, size_t digestLen,
+                       const std::array<uint8_t, maxHashSize>& expected,
+                       const std::array<uint8_t, maxSeedSize>& seed,
+                       const std::string& rawData);
     bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
                  const std::array<uint8_t, maxSeedSize>& seed,
                  const std::string& rawData, const std::string& algo);
