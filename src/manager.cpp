@@ -102,6 +102,104 @@ Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
     return baseTable;
 }
 
+bool Manager::validateEnumOption(
+    const std::string& attrValue,
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+{
+    for (const auto& enumOptions : options)
+    {
+        if ((BoundType::OneOf == std::get<0>(enumOptions)) &&
+            (attrValue == std::get<std::string>(std::get<1>(enumOptions))))
+        {
+            return true;
+        }
+    }
+
+    lg2::error("No valid attribute");
+    return false;
+}
+
+bool Manager::validateStringOption(
+    const std::string& attrValue,
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+{
+    size_t minStringLength = 0;
+    size_t maxStringLength = 0;
+    for (const auto& stringOptions : options)
+    {
+        if (BoundType::MinStringLength == std::get<0>(stringOptions))
+        {
+            minStringLength = std::get<int64_t>(std::get<1>(stringOptions));
+        }
+        else if (BoundType::MaxStringLength == std::get<0>(stringOptions))
+        {
+            maxStringLength = std::get<int64_t>(std::get<1>(stringOptions));
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+    if (attrValue.length() < minStringLength ||
+        attrValue.length() > maxStringLength)
+    {
+        lg2::error(
+            "{ATTRVALUE} Length is out of range, bound is invalid, maxStringLength = {MAXLEN}, minStringLength = {MINLEN}",
+            "ATTRVALUE", attrValue, "MAXLEN", maxStringLength, "MINLEN",
+            minStringLength);
+        return false;
+    }
+
+    return true;
+}
+
+bool Manager::validateIntegerOption(
+    const int64_t& attrValue,
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+{
+    int64_t lowerBound = 0;
+    int64_t upperBound = 0;
+    int64_t scalarIncrement = 0;
+
+    for (const auto& integerOptions : options)
+    {
+        if (BoundType::LowerBound == std::get<0>(integerOptions))
+        {
+            lowerBound = std::get<int64_t>(std::get<1>(integerOptions));
+        }
+        else if (BoundType::UpperBound == std::get<0>(integerOptions))
+        {
+            upperBound = std::get<int64_t>(std::get<1>(integerOptions));
+        }
+        else if (BoundType::ScalarIncrement == std::get<0>(integerOptions))
+        {
+            scalarIncrement = std::get<int64_t>(std::get<1>(integerOptions));
+        }
+    }
+
+    if ((attrValue < lowerBound) || (attrValue > upperBound))
+    {
+        lg2::error("Integer, bound is invalid");
+        return false;
+    }
+
+    if (scalarIncrement == 0 ||
+        ((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
+    {
+        lg2::error(
+            "((std::abs({ATTR_VALUE} - {LOWER_BOUND})) % {SCALAR_INCREMENT}) != 0",
+            "ATTR_VALUE", attrValue, "LOWER_BOUND", lowerBound,
+            "SCALAR_INCREMENT", scalarIncrement);
+        return false;
+    }
+
+    return true;
+}
+
 Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 {
     // Clear the pending attributes
@@ -147,21 +245,8 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
 
-            bool found = false;
-            for (const auto& enumOptions : options)
+            if (!validateEnumOption(attrValue, options))
             {
-                if ((BoundType::OneOf == std::get<0>(enumOptions)) &&
-                    (attrValue ==
-                     std::get<std::string>(std::get<1>(enumOptions))))
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                lg2::error("No valid attribute");
                 throw InvalidArgument();
             }
         }
@@ -180,34 +265,8 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
 
-            size_t minStringLength = 0;
-            size_t maxStringLength = 0;
-            for (const auto& stringOptions : options)
+            if (!validateStringOption(attrValue, options))
             {
-                if (BoundType::MinStringLength == std::get<0>(stringOptions))
-                {
-                    minStringLength =
-                        std::get<int64_t>(std::get<1>(stringOptions));
-                }
-                else if (BoundType::MaxStringLength ==
-                         std::get<0>(stringOptions))
-                {
-                    maxStringLength =
-                        std::get<int64_t>(std::get<1>(stringOptions));
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
-            if (attrValue.length() < minStringLength ||
-                attrValue.length() > maxStringLength)
-            {
-                lg2::error(
-                    "{ATTRVALUE} Length is out of range, bound is invalid, maxStringLength = {MAXLEN}, minStringLength = {MINLEN}",
-                    "ATTRVALUE", attrValue, "MAXLEN", maxStringLength, "MINLEN",
-                    minStringLength);
                 throw InvalidArgument();
             }
         }
@@ -224,41 +283,9 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             const auto& attrValue = std::get<int64_t>(std::get<1>(pair.second));
             const auto& options =
                 std::get<static_cast<uint8_t>(Index::options)>(iter->second);
-            int64_t lowerBound = 0;
-            int64_t upperBound = 0;
-            int64_t scalarIncrement = 0;
 
-            for (const auto& integerOptions : options)
+            if (!validateIntegerOption(attrValue, options))
             {
-                if (BoundType::LowerBound == std::get<0>(integerOptions))
-                {
-                    lowerBound = std::get<int64_t>(std::get<1>(integerOptions));
-                }
-                else if (BoundType::UpperBound == std::get<0>(integerOptions))
-                {
-                    upperBound = std::get<int64_t>(std::get<1>(integerOptions));
-                }
-                else if (BoundType::ScalarIncrement ==
-                         std::get<0>(integerOptions))
-                {
-                    scalarIncrement =
-                        std::get<int64_t>(std::get<1>(integerOptions));
-                }
-            }
-
-            if ((attrValue < lowerBound) || (attrValue > upperBound))
-            {
-                lg2::error("Integer, bound is invalid");
-                throw InvalidArgument();
-            }
-
-            if (scalarIncrement == 0 ||
-                ((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
-            {
-                lg2::error(
-                    "((std::abs({ATTR_VALUE} - {LOWER_BOUND})) % {SCALAR_INCREMENT}) != 0",
-                    "ATTR_VALUE", attrValue, "LOWER_BOUND", lowerBound,
-                    "SCALAR_INCREMENT", scalarIncrement);
                 throw InvalidArgument();
             }
         }

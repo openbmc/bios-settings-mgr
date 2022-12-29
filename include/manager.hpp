@@ -138,6 +138,24 @@ class Manager : public Base
         options,
     };
 
+    bool validateEnumOption(
+        const std::string& attrValue,
+        const std::vector<
+            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+            options);
+
+    bool validateStringOption(
+        const std::string& attrValue,
+        const std::vector<
+            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+            options);
+
+    bool validateIntegerOption(
+        const int64_t& attrValue,
+        const std::vector<
+            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+            options);
+
     sdbusplus::asio::object_server& objServer;
     std::shared_ptr<sdbusplus::asio::connection>& systemBus;
     std::filesystem::path biosFile;
