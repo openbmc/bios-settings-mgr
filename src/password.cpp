@@ -33,6 +33,33 @@ namespace bios_config_pwd
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace sdbusplus::xyz::openbmc_project::BIOSConfig::Common::Error;
 
+bool Password::compareDigest(const EVP_MD* digestFunc, size_t digestLen,
+                             const std::array<uint8_t, maxHashSize>& expected,
+                             const std::array<uint8_t, maxSeedSize>& seed,
+                             const std::string& rawData)
+{
+    std::vector<uint8_t> output(digestLen);
+    unsigned int hashLen = digestLen;
+
+    if (!PKCS5_PBKDF2_HMAC(reinterpret_cast<const char*>(rawData.c_str()),
+                           rawData.length() + 1,
+                           reinterpret_cast<const unsigned char*>(seed.data()),
+                           seed.size(), iterValue, digestFunc, hashLen,
+                           output.data()))
+    {
+        lg2::error("Generate PKCS5_PBKDF2_HMAC Integrity Check Value failed");
+        throw InternalFailure();
+    }
+
+    if (std::memcmp(output.data(), expected.data(),
+                    output.size() * sizeof(uint8_t)) == 0)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
                        const std::array<uint8_t, maxSeedSize>& seed,
                        const std::string& rawData, const std::string& algo)
@@ -41,59 +68,14 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
 
     if (algo == "SHA256")
     {
-        std::vector<uint8_t> output(SHA256_DIGEST_LENGTH);
-        unsigned int hashLen = SHA256_DIGEST_LENGTH;
-
-        if (!PKCS5_PBKDF2_HMAC(
-                reinterpret_cast<const char*>(rawData.c_str()),
-                rawData.length() + 1,
-                reinterpret_cast<const unsigned char*>(seed.data()),
-                seed.size(), iterValue, EVP_sha256(), hashLen, output.data()))
-        {
-            lg2::error(
-                "Generate PKCS5_PBKDF2_HMAC_SHA256 Integrity Check Value failed");
-            throw InternalFailure();
-        }
-
-        int cmp;
-        cmp = std::memcmp(output.data(), expected.data(),
-                          output.size() * sizeof(uint8_t));
-        if (cmp == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return compareDigest(EVP_sha256(), SHA256_DIGEST_LENGTH, expected, seed,
+                             rawData);
     }
+
     if (algo == "SHA384")
     {
-        std::array<uint8_t, SHA384_DIGEST_LENGTH> output;
-        unsigned int hashLen = SHA384_DIGEST_LENGTH;
-
-        if (!PKCS5_PBKDF2_HMAC(
-                reinterpret_cast<const char*>(rawData.c_str()),
-                rawData.length() + 1,
-                reinterpret_cast<const unsigned char*>(seed.data()),
-                seed.size(), iterValue, EVP_sha384(), hashLen, output.data()))
-        {
-            lg2::error(
-                "Generate PKCS5_PBKDF2_HMAC_SHA384 Integrity Check Value failed");
-            throw InternalFailure();
-        }
-
-        int cmp;
-        cmp = std::memcmp(output.data(), expected.data(),
-                          output.size() * sizeof(uint8_t));
-        if (cmp == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return compareDigest(EVP_sha384(), SHA384_DIGEST_LENGTH, expected, seed,
+                             rawData);
     }
 
     return false;
