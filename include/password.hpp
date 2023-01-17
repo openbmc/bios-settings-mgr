@@ -30,8 +30,6 @@
 
 namespace bios_config_pwd
 {
-
-static constexpr auto servicePwd = "xyz.openbmc_project.BIOSConfigPassword";
 static constexpr auto objectPathPwd =
     "/xyz/openbmc_project/bios_config/password";
 constexpr auto biosPasswordFile = "passwordData";
