@@ -323,16 +323,3 @@ Manager::Manager(sdbusplus::asio::object_server& objectServer,
 }
 
 } // namespace bios_config
-
-int main()
-{
-    boost::asio::io_service io;
-    auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
-
-    systemBus->request_name(bios_config::service);
-    sdbusplus::asio::object_server objectServer(systemBus);
-    bios_config::Manager manager(objectServer, systemBus);
-
-    io.run();
-    return 0;
-}
