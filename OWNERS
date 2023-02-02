@@ -32,7 +32,7 @@
 # data within them will be kept sorted.
 
 owners:
-- kuiying.wang@intel.com
+- wangkuiying.wky@alibaba-inc.com
 - suryakanth.sekar@linux.intel.com
 
 reviewers:
@@ -41,8 +41,8 @@ matchers:
 
 openbmc:
 - name: Kuiying Wang
-  email: kuiying.wang@intel.com
-  discord: kuiyingw
+  email: wangkuiying.wky@alibaba-inc.com
+  discord: Kwin
 - name: Suryakanth Sekar
   email: suryakanth.sekar@linux.intel.com
   discord: ssekar
