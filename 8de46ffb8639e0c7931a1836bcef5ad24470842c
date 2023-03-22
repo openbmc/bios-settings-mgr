@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Kuiying Wang <wangkuiying.wky@alibaba-inc.com>
+Submitted-by: <smriti.ayushi@linux.intel.com>
+Submitted-at: Wed, 22 Mar 2023 09:34:06 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/bios-settings-mgr/+/61775
+Project: openbmc/bios-settings-mgr
+Branch: refs/heads/master
