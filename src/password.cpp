@@ -81,6 +81,26 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
     return false;
 }
 
+bool Password::verifyIntegrityCheck(std::string& newPassword,
+                                    std::array<uint8_t, maxSeedSize>& seed,
+                                    unsigned int mdLen,
+                                    const EVP_MD* digestFunc)
+{
+    mNewPwdHash.fill(0);
+
+    if (!PKCS5_PBKDF2_HMAC(reinterpret_cast<const char*>(newPassword.c_str()),
+                           newPassword.length() + 1,
+                           reinterpret_cast<const unsigned char*>(seed.data()),
+                           seed.size(), iterValue, digestFunc, mdLen,
+                           mNewPwdHash.data()))
+    {
+        lg2::error("Verify PKCS5_PBKDF2_HMAC Integrity Check failed");
+        return false;
+    }
+
+    return true;
+}
+
 void Password::verifyPassword(std::string userName, std::string currentPassword,
                               std::string newPassword)
 {
@@ -142,35 +162,15 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
         }
         if (hashAlgo == "SHA256")
         {
-            unsigned int mdLen = 32;
-            mNewPwdHash.fill(0);
-
-            if (!PKCS5_PBKDF2_HMAC(
-                    reinterpret_cast<const char*>(newPassword.c_str()),
-                    newPassword.length() + 1,
-                    reinterpret_cast<const unsigned char*>(seed.data()),
-                    seed.size(), iterValue, EVP_sha256(), mdLen,
-                    mNewPwdHash.data()))
+            if (!verifyIntegrityCheck(newPassword, seed, 32, EVP_sha256()))
             {
-                lg2::error(
-                    "Verify PKCS5_PBKDF2_HMAC_SHA256 Integrity Check failed");
                 throw InternalFailure();
             }
         }
         if (hashAlgo == "SHA384")
         {
-            unsigned int mdLen = 48;
-            mNewPwdHash.fill(0);
-
-            if (!PKCS5_PBKDF2_HMAC(
-                    reinterpret_cast<const char*>(newPassword.c_str()),
-                    newPassword.length() + 1,
-                    reinterpret_cast<const unsigned char*>(seed.data()),
-                    seed.size(), iterValue, EVP_sha384(), mdLen,
-                    mNewPwdHash.data()))
+            if (!verifyIntegrityCheck(newPassword, seed, 48, EVP_sha384()))
             {
-                lg2::error(
-                    "Verify PKCS5_PBKDF2_HMAC_SHA384 Integrity Check failed");
                 throw InternalFailure();
             }
         }
