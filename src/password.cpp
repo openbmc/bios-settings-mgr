@@ -223,7 +223,7 @@ Password::Password(sdbusplus::asio::object_server& objectServer,
         *systemBus, objectPathPwd),
     objServer(objectServer), systemBus(systemBus)
 {
-    lg2::debug("BIOS config password is runing");
+    lg2::debug("BIOS config password is running");
     try
     {
         fs::path biosDir(BIOS_PERSIST_PATH);

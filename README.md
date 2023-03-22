@@ -46,4 +46,4 @@ xyz.openbmc_project.BIOSConfig.Password Interface
 Methods: ChangePassword - Change the BIOS setup password.
 
 Properities: PasswordInitialized - To indicate BIOS password related details are
-recevied or not.
+received or not.

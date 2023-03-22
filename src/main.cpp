@@ -32,7 +32,7 @@ int main()
     sdbusplus::asio::object_server objectServer(systemBus);
 
     /**
-     * Manager class is responsible handling methods and signals under
+     * Manager class is responsible for handling methods and signals under
      * the following object path and interface.
      *
      * Object path : /xyz/openbmc_project/bios_config/manager
@@ -41,7 +41,7 @@ int main()
     bios_config::Manager manager(objectServer, systemBus);
 
     /**
-     * Password class is responsible handling methods and signals under
+     * Password class is responsible for handling methods and signals under
      * the following object path and interface.
      *
      * Object path : /xyz/openbmc_project/bios_config/password
