@@ -54,7 +54,7 @@ executable('biosconfig-manager',
 
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable(
-    pkgconfig: 'systemdsystemunitdir',
+    'systemdsystemunitdir',
     pkgconfig_define: ['prefix', get_option('prefix')])
 
 configure_file(
