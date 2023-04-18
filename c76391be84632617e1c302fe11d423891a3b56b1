@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+Submitted-by: Patrick Williams <patrick@stwcx.xyz>
+Submitted-at: Tue, 18 Apr 2023 11:35:18 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/bios-settings-mgr/+/62386
+Project: openbmc/bios-settings-mgr
+Branch: refs/heads/master
