@@ -43,11 +43,12 @@ class Manager : public Base
   public:
     using BaseTable = std::map<
         std::string,
-        std::tuple<AttributeType, bool, std::string, std::string, std::string,
-                   std::variant<int64_t, std::string>,
-                   std::variant<int64_t, std::string>,
-                   std::vector<std::tuple<
-                       BoundType, std::variant<int64_t, std::string>>>>>;
+        std::tuple<
+            AttributeType, bool, std::string, std::string, std::string,
+            std::variant<int64_t, std::string>,
+            std::variant<int64_t, std::string>,
+            std::vector<std::tuple<
+                BoundType, std::variant<int64_t, std::string>, std::string>>>>;
 
     using ResetFlag = std::map<std::string, ResetFlag>;
 
@@ -140,20 +141,20 @@ class Manager : public Base
 
     bool validateEnumOption(
         const std::string& attrValue,
-        const std::vector<
-            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+        const std::vector<std::tuple<
+            BoundType, std::variant<int64_t, std::string>, std::string>>&
             options);
 
     bool validateStringOption(
         const std::string& attrValue,
-        const std::vector<
-            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+        const std::vector<std::tuple<
+            BoundType, std::variant<int64_t, std::string>, std::string>>&
             options);
 
     bool validateIntegerOption(
         const int64_t& attrValue,
-        const std::vector<
-            std::tuple<BoundType, std::variant<int64_t, std::string>>>&
+        const std::vector<std::tuple<
+            BoundType, std::variant<int64_t, std::string>, std::string>>&
             options);
 
     sdbusplus::asio::object_server& objServer;

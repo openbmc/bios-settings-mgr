@@ -104,8 +104,8 @@ Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
 
 bool Manager::validateEnumOption(
     const std::string& attrValue,
-    const std::vector<
-        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
+                                 std::string>>& options)
 {
     for (const auto& enumOptions : options)
     {
@@ -122,8 +122,8 @@ bool Manager::validateEnumOption(
 
 bool Manager::validateStringOption(
     const std::string& attrValue,
-    const std::vector<
-        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
+                                 std::string>>& options)
 {
     size_t minStringLength = 0;
     size_t maxStringLength = 0;
@@ -158,8 +158,8 @@ bool Manager::validateStringOption(
 
 bool Manager::validateIntegerOption(
     const int64_t& attrValue,
-    const std::vector<
-        std::tuple<BoundType, std::variant<int64_t, std::string>>>& options)
+    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
+                                 std::string>>& options)
 {
     int64_t lowerBound = 0;
     int64_t upperBound = 0;
