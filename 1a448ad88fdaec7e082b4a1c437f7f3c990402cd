@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37934680_f8f140c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2023-05-05T21:18:53Z",
+      "side": 1,
+      "message": "Looks good to me and fixes the build with the latest phosphor-dbus-interfaces on my system.",
+      "revId": "1a448ad88fdaec7e082b4a1c437f7f3c990402cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
