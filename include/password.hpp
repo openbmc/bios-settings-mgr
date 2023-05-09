@@ -84,6 +84,10 @@ class Password : public Base
     bool isMatch(const std::array<uint8_t, maxHashSize>& expected,
                  const std::array<uint8_t, maxSeedSize>& seed,
                  const std::string& rawData, const std::string& algo);
+    bool getParam(std::array<uint8_t, maxHashSize>& orgUsrPwdHash,
+                  std::array<uint8_t, maxHashSize>& orgAdminPwdHash,
+                  std::array<uint8_t, maxSeedSize>& seed,
+                  std::string& hashAlgo);
     bool verifyIntegrityCheck(std::string& newPassword,
                               std::array<uint8_t, maxSeedSize>& seed,
                               unsigned int mdLen, const EVP_MD* digestFunc);

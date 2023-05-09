@@ -81,6 +81,45 @@ bool Password::isMatch(const std::array<uint8_t, maxHashSize>& expected,
     return false;
 }
 
+bool Password::getParam(std::array<uint8_t, maxHashSize>& orgUsrPwdHash,
+                        std::array<uint8_t, maxHashSize>& orgAdminPwdHash,
+                        std::array<uint8_t, maxSeedSize>& seed,
+                        std::string& hashAlgo)
+{
+    try
+    {
+        nlohmann::json json = nullptr;
+        std::ifstream ifs(seedFile.c_str());
+        if (ifs.is_open())
+        {
+            try
+            {
+                json = nlohmann::json::parse(ifs, nullptr, false);
+            }
+            catch (const nlohmann::json::parse_error& e)
+            {
+                lg2::error("Failed to parse JSON file: {ERROR}", "ERROR", e);
+                return false;
+            }
+
+            if (!json.is_discarded())
+            {
+                orgUsrPwdHash = json["UserPwdHash"];
+                orgAdminPwdHash = json["AdminPwdHash"];
+                seed = json["Seed"];
+                hashAlgo = json["HashAlgo"];
+            }
+        }
+    }
+    catch (nlohmann::detail::exception& e)
+    {
+        lg2::error("Failed to parse JSON file: {ERROR}", "ERROR", e);
+        return false;
+    }
+
+    return true;
+}
+
 bool Password::verifyIntegrityCheck(std::string& newPassword,
                                     std::array<uint8_t, maxSeedSize>& seed,
                                     unsigned int mdLen,
@@ -110,42 +149,20 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
         std::array<uint8_t, maxHashSize> orgAdminPwdHash;
         std::array<uint8_t, maxSeedSize> seed;
         std::string hashAlgo = "";
-        try
-        {
-            nlohmann::json json = nullptr;
-            std::ifstream ifs(seedFile.c_str());
-            if (ifs.is_open())
-            {
-                try
-                {
-                    json = nlohmann::json::parse(ifs, nullptr, false);
-                }
-                catch (const nlohmann::json::parse_error& e)
-                {
-                    lg2::error("Failed to parse JSON file: {ERROR}", "ERROR",
-                               e);
-                    throw InternalFailure();
-                }
 
-                if (json.is_discarded())
-                {
-                    return;
-                }
-                orgUsrPwdHash = json["UserPwdHash"];
-                orgAdminPwdHash = json["AdminPwdHash"];
-                seed = json["Seed"];
-                hashAlgo = json["HashAlgo"];
-            }
-            else
+        if (getParam(orgUsrPwdHash, orgAdminPwdHash, seed, hashAlgo))
+        {
+            if (orgUsrPwdHash.empty() || orgAdminPwdHash.empty() ||
+                seed.empty() || hashAlgo.empty())
             {
                 return;
             }
         }
-        catch (nlohmann::detail::exception& e)
+        else
         {
-            lg2::error("Failed to parse JSON file: {ERROR}", "ERROR", e);
             throw InternalFailure();
         }
+
         if (userName == "AdminPassword")
         {
             if (!isMatch(orgAdminPwdHash, seed, currentPassword, hashAlgo))
