@@ -2,7 +2,7 @@ Remote BIOS Configuration via BMC Overview Provides ability for the user to view
 and modify the BIOS setup configuration parameters remotely via BMC at any Host
 state. Modifications to the parameters take place upon the next system reboot or
 immediate based on the host firmware. Please refer
-https://github.com/openbmc/docs/blob/master/designs/remoteBIOSConfiguration.md
+https://github.com/openbmc/docs/blob/master/designs/remote-bios-configuration.md
 
 Remote BIOS Configuration (RBC) service exposes D-Bus methods for BIOS settings
 management operations.
