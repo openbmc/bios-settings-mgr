@@ -35,6 +35,7 @@ deps = [dependency('boost'),
         dependency('sdbusplus'),
         dependency('systemd'),
         dependency('openssl'),
+        dependency('nlohmann_json',include_type: 'system')
 ]
 
 src_files = ['src/main.cpp',
