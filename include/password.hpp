@@ -32,7 +32,6 @@ namespace bios_config_pwd
 {
 static constexpr auto objectPathPwd =
     "/xyz/openbmc_project/bios_config/password";
-constexpr auto biosPasswordFile = "passwordData";
 constexpr auto biosSeedFile = "seedData";
 constexpr uint8_t maxHashSize = 64;
 constexpr uint8_t maxSeedSize = 32;
