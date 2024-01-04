@@ -16,6 +16,24 @@
       "message": "Better to specify the special commit id here?",
       "revId": "f59116530cecf7a2e2bdaf78b0df50b0c5d964d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa317461_c9132035",
+        "filename": "subprojects/nlohmann-json.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-01-04T06:03:06Z",
+      "side": 1,
+      "message": "As mentioned in the other commit, we dont want to take maintanence burden of updating this file with SHA values ..for every commit in nlohmann json repository.\n\nAnd , even the openbmc CI points to HEAD of nlohamnn json repository while building bios-settings-manager in CI, so its also in parity with how openbmc CI works.",
+      "parentUuid": "1842812c_393d8724",
+      "revId": "f59116530cecf7a2e2bdaf78b0df50b0c5d964d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
