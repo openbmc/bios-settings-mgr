@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1842812c_393d8724",
+        "filename": "subprojects/nlohmann-json.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-01-04T03:37:28Z",
+      "side": 1,
+      "message": "Better to specify the special commit id here?",
+      "revId": "f59116530cecf7a2e2bdaf78b0df50b0c5d964d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
