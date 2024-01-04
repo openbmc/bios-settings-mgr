@@ -16,6 +16,57 @@
       "message": "LGTM",
       "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db948af1_3fbe4dc7",
+        "filename": "subprojects/phosphor-dbus-interfaces.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-01-04T03:36:40Z",
+      "side": 1,
+      "message": "Better to specify the special commit it here?",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a32b3ea_4a2a7247",
+        "filename": "subprojects/phosphor-logging.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-01-04T03:36:40Z",
+      "side": 1,
+      "message": "Better to specify the special commit it here? May cause build fail when definition not matched, right?",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194a8833_13996c5f",
+        "filename": "subprojects/sdbusplus.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-01-04T03:36:40Z",
+      "side": 1,
+      "message": "Better to specify the special commit it here?",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
