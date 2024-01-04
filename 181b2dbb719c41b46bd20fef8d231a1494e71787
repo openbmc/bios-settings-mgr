@@ -16,6 +16,24 @@
       "message": "Please add test method and attach test result here.",
       "revId": "181b2dbb719c41b46bd20fef8d231a1494e71787",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1261f632_9432a2a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-01-04T06:06:29Z",
+      "side": 1,
+      "message": "this is just removing an un-used variable, we cannot write a test function to test the dead code that is being removed here.I have updated the commit message to indicate the same.",
+      "parentUuid": "f314c5f1_a17ea1e5",
+      "revId": "181b2dbb719c41b46bd20fef8d231a1494e71787",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
