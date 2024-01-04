@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cf2fbc9_0d95d9c4",
+        "filename": "subprojects/phosphor-dbus-interfaces.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-01-04T06:00:50Z",
+      "side": 1,
+      "message": "pointing to HEAD is the standard practice in openbmc. we don\u0027t want to take maintenance burden of updating these files for every commit that is being pushed into these repositories.\n\nAnd its much like openbmc CI - which always build your repository against the latest of other repositories like phosphor-dbus-interface, phosphor-logging,sdbusplus e.t.c",
+      "parentUuid": "db948af1_3fbe4dc7",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a32b3ea_4a2a7247",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "306735e8_953fb33f",
+        "filename": "subprojects/phosphor-logging.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-01-04T06:00:50Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "5a32b3ea_4a2a7247",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "194a8833_13996c5f",
@@ -65,6 +101,24 @@
       "writtenOn": "2024-01-04T03:36:40Z",
       "side": 1,
       "message": "Better to specify the special commit it here?",
+      "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db16a35_768af109",
+        "filename": "subprojects/sdbusplus.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-01-04T06:00:50Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "194a8833_13996c5f",
       "revId": "918d1a3e7d41828a5ad53785df47a9453347b16c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
