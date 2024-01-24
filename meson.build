@@ -36,8 +36,26 @@ deps = [dependency('boost'),
         dependency('systemd'),
         dependency('openssl'),
         dependency('nlohmann_json',include_type: 'system'),
-        dependency('cereal')
 ]
+
+cereal = dependency('cereal', required: false)
+cpp = meson.get_compiler('cpp')
+has_cereal = cpp.has_header_symbol(
+    'cereal/cereal.hpp',
+    'cereal::specialize',
+    dependencies: cereal,
+    required: false)
+if not has_cereal
+    cereal_opts = import('cmake').subproject_options()
+    cereal_opts.add_cmake_defines({'BUILD_TESTS': 'OFF'})
+    cereal_proj = import('cmake').subproject(
+        'cereal',
+        options: cereal_opts,
+        required: false)
+    assert(cereal_proj.found(), 'cereal is required')
+    cereal = cereal_proj.dependency('cereal')
+endif
+deps += cereal
 
 src_files = ['src/main.cpp',
              'src/manager.cpp',
