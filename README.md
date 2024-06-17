@@ -18,7 +18,7 @@ methods: SetAttribute -To set the particular BIOS attribute with new value.
 GetAttribute -To get the bios attribute current values and pending values if
 again.
 
-Properites: ResetBIOSSettings - Contain reset BIOS setting type: Interface have
+Properties: ResetBIOSSettings - Contain reset BIOS setting type: Interface have
 to set NoAction this property, when Reset BIOS settings are informed to the
 BIOS. BaseBIOSTable - Save the whole BIOS table.
 map{attributeName,struct{attributeType,readonlyStatus,displayname,
@@ -39,11 +39,11 @@ Signals: AttributeChanged - Signal sent out when attribute is changed
 PasswordInterface:
 
 xyz.openbmc_project.BIOSConfig.Password provides following Methods and
-Properities.
+Properties.
 
 xyz.openbmc_project.BIOSConfig.Password Interface
 
 Methods: ChangePassword - Change the BIOS setup password.
 
-Properities: PasswordInitialized - To indicate BIOS password related details are
+Properties: PasswordInitialized - To indicate BIOS password related details are
 received or not.
