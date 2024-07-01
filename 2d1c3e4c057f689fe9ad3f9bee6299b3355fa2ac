@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f2c9e5_63e63fbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-07-01T11:55:29Z",
+      "side": 1,
+      "message": "Can we please merge this? It is sitting there more than 2 months already.\n\nThis patchset is a part of a major openbmc cleanup https://github.com/openbmc/openbmc/issues/3993",
+      "revId": "2d1c3e4c057f689fe9ad3f9bee6299b3355fa2ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
