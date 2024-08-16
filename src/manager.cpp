@@ -312,8 +312,8 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
 Manager::Manager(sdbusplus::asio::object_server& objectServer,
                  std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
-    sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(*systemBus,
-                                                                 objectPath),
+    sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(
+        *systemBus, objectPath),
     objServer(objectServer), systemBus(systemBus)
 {
     fs::path biosDir(BIOS_PERSIST_PATH);

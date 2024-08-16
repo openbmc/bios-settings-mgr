@@ -120,10 +120,9 @@ bool Password::getParam(std::array<uint8_t, maxHashSize>& orgUsrPwdHash,
     return true;
 }
 
-bool Password::verifyIntegrityCheck(std::string& newPassword,
-                                    std::array<uint8_t, maxSeedSize>& seed,
-                                    unsigned int mdLen,
-                                    const EVP_MD* digestFunc)
+bool Password::verifyIntegrityCheck(
+    std::string& newPassword, std::array<uint8_t, maxSeedSize>& seed,
+    unsigned int mdLen, const EVP_MD* digestFunc)
 {
     mNewPwdHash.fill(0);
 
