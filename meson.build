@@ -33,7 +33,7 @@ deps = [dependency('boost'),
         dependency('phosphor-dbus-interfaces'),
         dependency('phosphor-logging'),
         dependency('sdbusplus'),
-        dependency('systemd'),
+        dependency('libsystemd'),
         dependency('openssl'),
         dependency('nlohmann_json',include_type: 'system'),
 ]
