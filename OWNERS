@@ -33,7 +33,6 @@
 
 owners:
 - wangkuiying.wky@alibaba-inc.com
-- suryakanth.sekar@linux.intel.com
 - manojkiran.eda@gmail.com
 
 reviewers:
@@ -44,9 +43,6 @@ openbmc:
 - name: Kuiying Wang
   email: wangkuiying.wky@alibaba-inc.com
   discord: Kwin
-- name: Suryakanth Sekar
-  email: suryakanth.sekar@linux.intel.com
-  discord: ssekar
 - name: Manojkiran Eda
   email: manojkiran.eda@gmail.com
   discord: manojkiran
