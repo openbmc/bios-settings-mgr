@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e864e29_8eba85bc",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-10-03T04:11:21Z",
+      "side": 1,
+      "message": "@Konstantin Aladyshev , Thanks for this patchset. Its a little unfortunate that this sat in the review for quite some time.\n\nIt seems 1.86 is the latest boost, can we directly add that ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 24
+      },
+      "revId": "4a399311cdecb224e71db6ebfb55b2d8150137cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
