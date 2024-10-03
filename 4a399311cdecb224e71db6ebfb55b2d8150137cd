@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69a9cb1f_919f9634",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-10-03T18:02:11Z",
+      "side": 1,
+      "message": "This change is still a WIP. Unless it is merged I prefer not to run ahead, especially in such a slow project as bios-settings-manager",
+      "parentUuid": "26dc2eff_0cd92bcd",
+      "revId": "4a399311cdecb224e71db6ebfb55b2d8150137cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e864e29_8eba85bc",
         "filename": "subprojects/boost.wrap",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-03T04:11:21Z",
       "side": 1,
       "message": "@Konstantin Aladyshev , Thanks for this patchset. Its a little unfortunate that this sat in the review for quite some time.\n\nIt seems 1.86 is the latest boost, can we directly add that ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 24
+      },
+      "revId": "4a399311cdecb224e71db6ebfb55b2d8150137cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0b6fe5a_fe60adf3",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-10-03T18:02:11Z",
+      "side": 1,
+      "message": "Currently OpenBmc project is not very consistent about source_url used for getting boost and its version.\n\nIn my changes that I\u0027ve made while dealing with https://github.com/openbmc/openbmc/issues/3993 I\u0027ve used boost 1.84 from this url. I don\u0027t think that somebody would update all the OpenBmc wrap files on every boost update, unless it is really needed. So to keep things consistent I think it is preferable to leave it to 1.84, like I did in all the other projects.",
+      "parentUuid": "4e864e29_8eba85bc",
       "range": {
         "startLine": 2,
         "startChar": 0,
