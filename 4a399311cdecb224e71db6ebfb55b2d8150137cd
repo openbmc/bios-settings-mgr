@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26dc2eff_0cd92bcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2024-10-03T04:16:37Z",
+      "side": 1,
+      "message": "also can we follow along the changes that were made here https://gerrit.openbmc.org/c/openbmc/bmcweb/+/71296. I like this change better since that removes the developer/ maintained burden to cope-up \u0026 track the boost upgrades.",
+      "revId": "4a399311cdecb224e71db6ebfb55b2d8150137cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e864e29_8eba85bc",
         "filename": "subprojects/boost.wrap",
         "patchSetId": 2
