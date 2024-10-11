@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "af9817567128a97f7e340ed4b1a8b2ceff7d0691",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b893bdf_b4db9779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-10-11T07:41:43Z",
+      "side": 1,
+      "message": "Please formate it as CI requirement.",
+      "revId": "af9817567128a97f7e340ed4b1a8b2ceff7d0691",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
