@@ -94,13 +94,7 @@ bool deserialize(const fs::path& path, Manager& entry)
         }
         return false;
     }
-    catch (cereal::Exception& e)
-    {
-        lg2::error("Failed to serialize: {ERROR}", "ERROR", e);
-        fs::remove(path);
-        return false;
-    }
-    catch (const std::length_error& e)
+    catch (const std::exception& e)
     {
         lg2::error("Failed to serialize: {ERROR}", "ERROR", e);
         fs::remove(path);
