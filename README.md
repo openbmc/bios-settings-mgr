@@ -111,8 +111,8 @@ signature.
     "displayname": "BIOS Serial Debug level",
     "description": "BIOS Serial Debug level during system boot.",
     "menuPath": "Advanced/Debug Feature Selection",
-    "current": 0x00,
-    "default": 0x01,
+    "current": "0x00",
+    "default": "0x01",
     "options": [
       { "optionstring": "MinBound", "optionvalue": 0 },
       { "optionstring": "MaxBound", "optionvalue": 4 },
