@@ -55,9 +55,24 @@ void load(Archive& archive, Manager& entry, const std::uint32_t /*version*/)
 
 void serialize(const Manager& obj, const fs::path& path)
 {
-    std::ofstream os(path.c_str(), std::ios::out | std::ios::binary);
-    cereal::BinaryOutputArchive oarchive(os);
-    oarchive(obj);
+    try
+    {
+        std::ofstream os(path, std::ios::out | std::ios::binary);
+
+        if (!os.is_open())
+        {
+            lg2::error("Failed to open file for serialization: {FILE}", "FILE",
+                       path);
+            return;
+        }
+
+        cereal::BinaryOutputArchive oarchive(os);
+        oarchive(obj);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to Serialize : {ERROR} ", "ERROR", e);
+    }
 }
 
 bool deserialize(const fs::path& path, Manager& entry)
@@ -67,6 +82,12 @@ bool deserialize(const fs::path& path, Manager& entry)
         if (fs::exists(path))
         {
             std::ifstream is(path.c_str(), std::ios::in | std::ios::binary);
+            if (!is.is_open())
+            {
+                lg2::error("Failed to open file for deserialization: {FILE}",
+                           "FILE", path);
+                return false;
+            }
             cereal::BinaryInputArchive iarchive(is);
             iarchive(entry);
             return true;
