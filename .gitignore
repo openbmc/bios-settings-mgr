@@ -1,4 +1,3 @@
-# meson
-
-/build
-/builddir
+build*/
+subprojects/*
+!subprojects/*.wrap
