@@ -24,8 +24,17 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-int main()
+PHOSPHOR_LOG2_USING;
+
+int main(int argc, char** argv)
 {
+    std::string persistPath = BIOS_PERSIST_PATH;
+    if (argc >= 2)
+    {
+        persistPath = argv[1];
+        info("Using temporary path {PATH}", "PATH", persistPath);
+    }
+
     boost::asio::io_service io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 
@@ -39,7 +48,7 @@ int main()
      * Object path : /xyz/openbmc_project/bios_config/manager
      * Interface : xyz.openbmc_project.BIOSConfig.Manager
      */
-    bios_config::Manager manager(objectServer, systemBus, BIOS_PERSIST_PATH);
+    bios_config::Manager manager(objectServer, systemBus, persistPath);
 
     /**
      * Password class is responsible for handling methods and signals under
@@ -48,7 +57,7 @@ int main()
      * Object path : /xyz/openbmc_project/bios_config/password
      * Interface : xyz.openbmc_project.BIOSConfig.Password
      */
-    bios_config_pwd::Password password(objectServer, systemBus);
+    bios_config_pwd::Password password(objectServer, systemBus, persistPath);
 
     io.run();
     return 0;
