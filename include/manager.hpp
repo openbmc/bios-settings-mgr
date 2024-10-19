@@ -15,8 +15,6 @@
 */
 #pragma once
 
-#include "config.h"
-
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/BIOSConfig/Manager/server.hpp>
@@ -79,7 +77,8 @@ class Manager : public Base
      *  @param[in] systemBus - bus connection
      */
     Manager(sdbusplus::asio::object_server& objectServer,
-            std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+            std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+            std::string persistPath);
 
     /** @brief Set the BIOS attribute with a new value, the new value is added
      *         to the PendingAttribute.

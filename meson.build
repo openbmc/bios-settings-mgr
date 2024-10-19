@@ -18,10 +18,6 @@ project(
 # project uses the same compiler, we can safely ignmore these info notes.
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
-conf_data = configuration_data()
-conf_data.set_quoted('BIOS_PERSIST_PATH', get_option('bios-persist-path'))
-configure_file(output: 'config.h', configuration: conf_data)
-
 boost_args = [
     '-DBOOST_ALL_NO_LIB',
     '-DBOOST_ASIO_DISABLE_THREADS',

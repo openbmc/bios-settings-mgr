@@ -311,12 +311,13 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 }
 
 Manager::Manager(sdbusplus::asio::object_server& objectServer,
-                 std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+                 std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+                 std::string persistPath) :
     sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(
         *systemBus, objectPath),
     objServer(objectServer), systemBus(systemBus)
 {
-    fs::path biosDir(BIOS_PERSIST_PATH);
+    fs::path biosDir(persistPath);
     fs::create_directories(biosDir);
     biosFile = biosDir / biosPersistFile;
     deserialize(biosFile, *this);

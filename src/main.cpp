@@ -14,6 +14,7 @@
 // limitations under the License.
 */
 
+#include "config.hpp"
 #include "manager.hpp"
 #include "password.hpp"
 
@@ -38,7 +39,7 @@ int main()
      * Object path : /xyz/openbmc_project/bios_config/manager
      * Interface : xyz.openbmc_project.BIOSConfig.Manager
      */
-    bios_config::Manager manager(objectServer, systemBus);
+    bios_config::Manager manager(objectServer, systemBus, BIOS_PERSIST_PATH);
 
     /**
      * Password class is responsible for handling methods and signals under
