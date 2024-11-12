@@ -277,7 +277,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
             // For enumeration the expected variant types is Integer
             if (std::get<1>(pair.second).index() == 1)
             {
-                lg2::error("Enumeration property value is not int");
+                lg2::error("Integer property value is not int");
                 throw InvalidArgument();
             }
 
