@@ -1,0 +1,10 @@
+Code-Review+1: ManojKiran Eda <manojkiran.eda@gmail.com>
+Code-Review+2: Kuiying Wang <wangkuiying.wky@alibaba-inc.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Kuiying Wang <wangkuiying.wky@alibaba-inc.com>
+Submitted-at: Thu, 14 Nov 2024 06:46:57 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/bios-settings-mgr/+/74097
+Comments-Total: 2
+Comments-Unresolved: 1
+Project: openbmc/bios-settings-mgr
+Branch: refs/heads/master
