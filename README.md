@@ -68,8 +68,10 @@ This structure consists of:
 - **Display Name (string)**: The human-readable name of the attribute.
 - **Description (string)**: A description of what the attribute does.
 - **Menu Path (string)**: The BIOS menu path where this attribute can be found.
-- **Current Value (variant[int64, string])**: The current value of the attribute.
-- **Default Value (variant[int64, string])**: The default value of the attribute.
+- **Current Value (variant[int64, string])**: The current value of the
+  attribute.
+- **Default Value (variant[int64, string])**: The default value of the
+  attribute.
 - **Options (array of structs)**: The available options or bounds for this
   attribute.
 
