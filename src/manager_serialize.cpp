@@ -14,7 +14,7 @@
 #include <variant>
 #include <vector>
 
-CEREAL_CLASS_VERSION(bios_config::Manager, 1);
+CEREAL_CLASS_VERSION(bios_config::Manager, 2);
 namespace bios_config
 {
 
@@ -48,6 +48,13 @@ void save(Archive& archive, const Manager& entry, const std::uint32_t version)
                 baseBIOSTable(),
             entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
                 pendingAttributes());
+
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::currentBoot());
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::pendingEnable());
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::mode());
 }
 
 /** @brief Function required by Cereal to perform deserialization.
@@ -66,6 +73,10 @@ void load(Archive& archive, Manager& entry, const std::uint32_t version)
     Manager::BaseTable baseTable;
     Manager::oldBaseTable baseTbl;
     Manager::PendingAttributes pendingAttrs;
+    Manager::CurrentBootType currentBootValue =
+        Manager::CurrentBootType::Unknown;
+    bool pendingEnableValue = false;
+    Manager::ModeType modeValue = Manager::ModeType::Unknown;
 
     auto currentVersion = cereal::detail::Version<Manager>::version;
 
@@ -76,6 +87,12 @@ void load(Archive& archive, Manager& entry, const std::uint32_t version)
             break;
         case 1:
             archive(baseTable, pendingAttrs);
+            break;
+        case 2:
+            archive(baseTable, pendingAttrs);
+            archive(currentBootValue);
+            archive(pendingEnableValue);
+            archive(modeValue);
             break;
     }
 
@@ -91,6 +108,13 @@ void load(Archive& archive, Manager& entry, const std::uint32_t version)
 
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         pendingAttributes(pendingAttrs, true);
+
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::
+        currentBoot(currentBootValue, true);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::
+        pendingEnable(pendingEnableValue, true);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::mode(
+        modeValue, true);
 }
 
 void serialize(const Manager& obj, const fs::path& path)
