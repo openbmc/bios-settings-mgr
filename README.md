@@ -170,6 +170,22 @@ xyz.openbmc_project.BIOSConfig.Password
 - **PasswordInitialized** Used to indicate whether the BIOS password-related
   details have been received.
 
+## RBC BIOS SecureBoot Interface
+
+### Object Path
+
+```txt
+xyz.openbmc_project.BIOSConfig.SecureBoot
+```
+
+### Properties
+
+- **CurrentBoot** Used to indicate UEFI Secure Boot state during current
+  boot cycle
+- **PendingEnable** An indication of whether the UEFI Secure Boot takes effect
+  on next boot
+- **Mode** The current UEFI Secure Boot Mode
+
 [rbmc-design-document]:
   https://github.com/openbmc/docs/blob/master/designs/remote-bios-configuration.md
 [pldm-bios-json]:

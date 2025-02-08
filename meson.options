@@ -1,0 +1,6 @@
+option(
+    'enable-bios-secureboot',
+    type: 'feature',
+    value: 'disabled',
+    description: 'Enable BIOS SecureBoot configuration',
+)
