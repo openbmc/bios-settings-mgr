@@ -19,6 +19,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/server.hpp>
 #include <xyz/openbmc_project/BIOSConfig/Manager/server.hpp>
+#include <xyz/openbmc_project/BIOSConfig/SecureBoot/server.hpp>
 
 #include <filesystem>
 #include <string>
@@ -30,7 +31,10 @@ static constexpr auto service = "xyz.openbmc_project.BIOSConfigManager";
 static constexpr auto objectPath = "/xyz/openbmc_project/bios_config/manager";
 constexpr auto biosPersistFile = "biosData";
 
-using Base = sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager;
+using Base = sdbusplus::server::object_t<
+    sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager,
+    sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot>;
+
 namespace fs = std::filesystem;
 
 /** @class Manager
@@ -153,6 +157,31 @@ class Manager : public Base
      */
     void convertBiosDataToVersion0(Manager::oldBaseTable& baseTable,
                                    Manager::BaseTable& biosTbl);
+
+    /** @brief Indicates the UEFI Secure Boot state during the current boot
+     * cycle
+     *
+     *  @param[in] value - Boot Type during the current cycle
+     *
+     *  @return On success, return the CurrentBootType
+     */
+    CurrentBootType currentBoot(CurrentBootType value) override;
+
+    /** @brief Indicates whether the UEFI Secure Boot takes effect on next boot
+     *
+     *  @param[in] value - new value for the attribute
+     *
+     *  @return On succes, return the new attribute
+     */
+    bool pendingEnable(bool value) override;
+
+    /** @brief Indicates the current UEFI Secure Boot Mode
+     *
+     *  @param[in] value - new value for the attribute
+     *
+     *  @return On success, return the new attribute
+     */
+    ModeType mode(ModeType value) override;
 
   private:
     /** @enum Index into the fields in the BaseBIOSTable
