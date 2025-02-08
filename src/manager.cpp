@@ -385,12 +385,32 @@ void Manager::convertBiosDataToVersion0(Manager::oldBaseTable& baseTable,
     }
 }
 
+Manager::CurrentBootType Manager::currentBoot(Manager::CurrentBootType value)
+{
+    auto newValue = Base::currentBoot(value, false);
+    serialize(*this, biosFile);
+    return newValue;
+}
+
+bool Manager::pendingEnable(bool value)
+{
+    auto newValue = Base::enable(value, false);
+    serialize(*this, biosFile);
+    return newValue;
+}
+
+Manager::ModeType Manager::mode(Manager::ModeType value)
+{
+    auto newValue = Base::mode(value, false);
+    serialize(*this, biosFile);
+    return newValue;
+}
+
 Manager::Manager(sdbusplus::asio::object_server& objectServer,
                  std::shared_ptr<sdbusplus::asio::connection>& systemBus,
                  std::string persistPath) :
-    sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(
-        *systemBus, objectPath),
-    objServer(objectServer), systemBus(systemBus)
+    bios_config::Base(*systemBus, objectPath), objServer(objectServer),
+    systemBus(systemBus)
 {
     fs::path biosDir(persistPath);
     fs::create_directories(biosDir);
