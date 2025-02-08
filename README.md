@@ -170,6 +170,31 @@ xyz.openbmc_project.BIOSConfig.Password
 - **PasswordInitialized** Used to indicate whether the BIOS password-related
   details have been received.
 
+## RBC SecureBoot Interface
+
+The SecureBoot interface exposes methods and properties to Get & Set UEFI
+SecureBoot settings via dbus and its documented [here][pdi-secureboot-bios]
+
+### Object Path
+
+```txt
+xyz.openbmc_project.BIOSConfig.SecureBoot
+```
+
+### Properties
+
+- **CurrentBoot** Used to indicate UEFI Secure Boot state during current boot
+  cycle
+- **PendingEnable** An indication of whether the UEFI Secure Boot takes effect
+  on next boot
+- **Mode** The current UEFI Secure Boot Mode
+
+### SecureBoot with Redfish Host Interface as Communication Protocol
+
+For systems that use the **Redfish Host Interface** protocol between BMC & Host,
+UEFI SecureBoot configuration is gathered by BMC via redfish. The settings are
+transformed to native dbus format and properties are set accordingly.
+
 [rbmc-design-document]:
   https://github.com/openbmc/docs/blob/master/designs/remote-bios-configuration.md
 [pldm-bios-json]:
@@ -179,3 +204,5 @@ xyz.openbmc_project.BIOSConfig.Password
   https://github.com/openbmc/intel-ipmi-oem/blob/master/src/biosconfigcommands.cpp
 [pdi-manager-bios]:
   https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/BIOSConfig/Manager.interface.yaml
+[pdi-secureboot-bios]:
+  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/BIOSConfig/SecureBoot.interface.yaml
