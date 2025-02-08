@@ -388,9 +388,8 @@ void Manager::convertBiosDataToVersion0(Manager::oldBaseTable& baseTable,
 Manager::Manager(sdbusplus::asio::object_server& objectServer,
                  std::shared_ptr<sdbusplus::asio::connection>& systemBus,
                  std::string persistPath) :
-    sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager(
-        *systemBus, objectPath),
-    objServer(objectServer), systemBus(systemBus)
+    bios_config::Base(*systemBus, objectPath), objServer(objectServer),
+    systemBus(systemBus)
 {
     fs::path biosDir(persistPath);
     fs::create_directories(biosDir);

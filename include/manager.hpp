@@ -31,6 +31,7 @@ static constexpr auto objectPath = "/xyz/openbmc_project/bios_config/manager";
 constexpr auto biosPersistFile = "biosData";
 
 using Base = sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager;
+
 namespace fs = std::filesystem;
 
 /** @class Manager
