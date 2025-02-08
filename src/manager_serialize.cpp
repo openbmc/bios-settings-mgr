@@ -48,6 +48,12 @@ void save(Archive& archive, const Manager& entry, const std::uint32_t version)
                 baseBIOSTable(),
             entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
                 pendingAttributes());
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::currentBoot());
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::pendingEnable());
+    archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::
+                SecureBoot::mode());
 }
 
 /** @brief Function required by Cereal to perform deserialization.
@@ -91,6 +97,21 @@ void load(Archive& archive, Manager& entry, const std::uint32_t version)
 
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         pendingAttributes(pendingAttrs, true);
+
+    Manager::CurrentBootType currentBootValue;
+    archive(currentBootValue);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::
+        currentBoot(currentBootValue, true);
+
+    bool enableValue;
+    archive(enableValue);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::
+        enable(enableValue, true);
+
+    Manager::ModeType modeValue;
+    archive(modeValue);
+    entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::SecureBoot::mode(
+        modeValue, true);
 }
 
 void serialize(const Manager& obj, const fs::path& path)
