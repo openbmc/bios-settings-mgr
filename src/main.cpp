@@ -35,7 +35,7 @@ int main(int argc, char** argv)
         info("Using temporary path {PATH}", "PATH", persistPath);
     }
 
-    boost::asio::io_service io;
+    boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 
     systemBus->request_name(bios_config::service);
