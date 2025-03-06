@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b355b7c_9fcaaa38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-06T07:43:57Z",
+      "side": 1,
+      "message": "Can you also add the PDI details in the commit message. So that people who are looking at this new will be able to understand the context.",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d97a09_2c331bf9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-06T07:43:57Z",
+      "side": 1,
+      "message": "can you also mention how this is all tested ?",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249cd436_808c14a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-06T07:43:57Z",
+      "side": 1,
+      "message": "I am especially looking for a test case where - some one is migrating to-and-fro between versions of firmware that does \u0026 does not support these new properties. How does the firmware behave ? can it automatically load the other properties like BaseBIOSTable and discard the ones that it does not understand ? or does the parsing fails ?",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
