@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd69d16a_9a0b4728",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-10T08:47:26Z",
+      "side": 1,
+      "message": "yes sure.\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/77943\nWill add the link to commit message",
+      "parentUuid": "1b355b7c_9fcaaa38",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13d97a09_2c331bf9",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d7c58ca_9e835299",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-10T08:47:26Z",
+      "side": 1,
+      "message": "sure will update the testing results",
+      "parentUuid": "13d97a09_2c331bf9",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "249cd436_808c14a0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -48,6 +84,24 @@
       "writtenOn": "2025-03-06T07:43:57Z",
       "side": 1,
       "message": "I am especially looking for a test case where - some one is migrating to-and-fro between versions of firmware that does \u0026 does not support these new properties. How does the firmware behave ? can it automatically load the other properties like BaseBIOSTable and discard the ones that it does not understand ? or does the parsing fails ?",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ec8078d_fde86861",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-10T08:47:26Z",
+      "side": 1,
+      "message": "Flashed biosconfig-manager as per the ToT(https://github.com/openbmc/bios-settings-mgr/commit/a46dc4ec19b7d7cc6e3fb6fc7c1c95cd0a9c2244). Here, are my observations\n1) With addition of new properties biosconfig-manager was able to load BaseBiosTable. No errors were seen.\n2) When biosconfig-manager is flashed without this patch it behaved normally without any errors.",
+      "parentUuid": "249cd436_808c14a0",
       "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
