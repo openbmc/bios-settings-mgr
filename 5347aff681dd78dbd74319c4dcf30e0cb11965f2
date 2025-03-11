@@ -22,6 +22,30 @@
       },
       "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca94ef9e_a862b08d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-11T08:00:14Z",
+      "side": 1,
+      "message": "Thanks a lot Archana for the review. \nCurrently `BIOS Attributes` can be obtained via various ways PLDM, ipmi or redfish host interface. \nIf `SecureBoot` properties are made as part of bios attributes then bmcweb shall have to implement parsing logic to obtain `SecureBoot` properties. \nAdding the change to bios-settings-manager will help us query the properties via dbus. \nThere is a dedicated schema for Remote UEFI secure boot configuration (https://redfish.dmtf.org/schemas/v1/SecureBoot.v1_1_2.json).",
+      "parentUuid": "5ba252b2_d1b05b8c",
+      "range": {
+        "startLine": 11,
+        "startChar": 31,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
