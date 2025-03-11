@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d64c5ced_b37ee434",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-11T14:03:05Z",
+      "side": 1,
+      "message": "Sure thanks for suggestion I will keep this in mind and follow this. \nAdded the link here:\nhttps://github.com/openbmc/phosphor-dbus-interfaces/commit/b235159e0acc9943bc5f4e428ba6536f2e3cb621",
+      "parentUuid": "ed11c674_b38064ba",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13d97a09_2c331bf9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -174,6 +192,24 @@
       "side": 1,
       "message": "I am not sure how this would have worked, you have not incremented the cereal persisted file versioning and added the new interfaces in to the existing version itself.\n\ncan you explain how this code is backward \u0026 forward compatible ?",
       "parentUuid": "1c218ffc_f74b1cee",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b0dbccd_c71da467",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-11T14:03:05Z",
+      "side": 1,
+      "message": "Sorry @manojkiran.eda@gmail.com @archana.kakani@ibm.com my bad I had not uploaded my entire patchset. I had floated this MR long ago as wip to update once the PDI changes were merged. But forgot to update with version change patchset. \nThanks a lot for pointing out. \nWith these change on the ToT I flashed the image with my patch. \nThere was no issues with deserialization.",
+      "parentUuid": "98e7cde1_5d82a7b7",
       "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
