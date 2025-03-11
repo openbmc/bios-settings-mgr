@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed11c674_b38064ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-11T11:15:57Z",
+      "side": 1,
+      "message": "Please prefer the github.com/\u003c\u003e link instead of sharing the gerrit link.",
+      "parentUuid": "cd69d16a_9a0b4728",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13d97a09_2c331bf9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "The Serialized file created with addition of new properties biosconfig-manager will have newly added data in the persisted file.\nDoes the deserialization of this file by biosconfig-manager(which does not support new properties), succeeds?",
       "parentUuid": "4ec8078d_fde86861",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e7cde1_5d82a7b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-11T11:15:57Z",
+      "side": 1,
+      "message": "I am not sure how this would have worked, you have not incremented the cereal persisted file versioning and added the new interfaces in to the existing version itself.\n\ncan you explain how this code is backward \u0026 forward compatible ?",
+      "parentUuid": "1c218ffc_f74b1cee",
       "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
