@@ -118,6 +118,30 @@
       },
       "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998a53f3_626a5df0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-18T09:49:42Z",
+      "side": 1,
+      "message": "During the bios boot, BIOS sends ipmi commands(oem as well as spec defined). \nhttps://www.dmtf.org/sites/default/files/standards/documents/DSP0270_1.3.0.pdf\nThrough oem commands bios will get BMCs network information. As per redfish host interface spec bios-bmc can be connected by internal network such as USB Network Interface.\nThrough ipmi group command as defined in above spec, bios will request for bootstrap account. This account will be used by bios for redfish communication. \nThe account will be deleted in following cases\n1) bmcweb service restarts\n2) host reset is detected\nOnce bios has the credentials, bios can perform GET/POST/PATCH/PUT operations. \nBios can PUT the biosAttributes information to BMC via redfish.\nBios can PATCH SecureBoot information via redfish.\n \nOnce the data is available in BMC, user can perform the patch operation which will be taken by bios in the next boot. \nbios performs get on bios/Settings URI to check if there is any information changed as defined in bios-settings-manager.\n\nYes, currently we don\u0027t have bios support in bmcweb. Yes, I m planning to float design doc for redfish-host-interface soon. \nOnce we have alignment, secure-boot and boot-option schema will be implemented. \n\nAnd also there was a discord discussions going on about using this repo for secure-boot and boot-option backend(https://discordapp.com/channels/775381525260664832/1346430018615513160). I kindly request you to share your inputs as well.\nThere was inputs for having secureBoot and bootOption as a configurable options as pldm for bios does not have support this yet.",
+      "parentUuid": "54eddd43_189559de",
+      "range": {
+        "startLine": 11,
+        "startChar": 31,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
