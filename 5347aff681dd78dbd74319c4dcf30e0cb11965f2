@@ -94,6 +94,30 @@
       },
       "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54eddd43_189559de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-18T07:32:07Z",
+      "side": 1,
+      "message": "\u003e On NVIDIA systems, the bios sets the values via redfish host interface(first boot).\n\nCan you explain a little bit more on how this is done? does your bios firmware has network/redfish stack ? \n\n\u003e And also users can perform patch to change the value which will be picked by bios in the upcoming boot.\n\nAlso, looks like there is no bios support in bmcweb yet, is that something that you plan to upstream ? are there WIP commits that are in progress ? \n\nAnd also the secureboot schema - is that already implemented in bmcweb ? or are there commits that are in review for this ? I just want to make sure that what ever back end we did , that should be consumable by redfish.",
+      "parentUuid": "9f812726_a0635c12",
+      "range": {
+        "startLine": 11,
+        "startChar": 31,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "5347aff681dd78dbd74319c4dcf30e0cb11965f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

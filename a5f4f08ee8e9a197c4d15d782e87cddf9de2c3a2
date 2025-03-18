@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e570f5f2_96b44d7f",
+        "filename": "include/manager.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-18T07:32:07Z",
+      "side": 1,
+      "message": "alignment problem",
+      "range": {
+        "startLine": 162,
+        "startChar": 6,
+        "endLine": 162,
+        "endChar": 12
+      },
+      "revId": "a5f4f08ee8e9a197c4d15d782e87cddf9de2c3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
