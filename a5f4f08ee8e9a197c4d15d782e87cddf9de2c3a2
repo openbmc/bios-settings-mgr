@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "169a83f8_cd0655f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-20T07:22:38Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com the SecureBoot information is received by BMC via redfish-host-interface. Here is the design doc: https://gerrit.openbmc.org/c/openbmc/docs/+/79055",
+      "revId": "a5f4f08ee8e9a197c4d15d782e87cddf9de2c3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e570f5f2_96b44d7f",
