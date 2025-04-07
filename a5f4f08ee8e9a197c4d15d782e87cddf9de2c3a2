@@ -52,6 +52,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0adffa4_dfbbeb46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-04-07T08:00:11Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com please review https://gerrit.openbmc.org/c/openbmc/docs/+/79482 this document gives info on transfer of config data between BMC and BIOS via Redfish",
+      "revId": "a5f4f08ee8e9a197c4d15d782e87cddf9de2c3a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e570f5f2_96b44d7f",
