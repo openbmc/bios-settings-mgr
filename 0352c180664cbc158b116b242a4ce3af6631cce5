@@ -266,6 +266,24 @@
       "parentUuid": "927b4e11_4bfe6a52",
       "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1ad336_5de7d772",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-04-28T12:23:47Z",
+      "side": 1,
+      "message": "Updates README.md and added SecureBoot functionality related design",
+      "parentUuid": "d832487d_d0564a30",
+      "revId": "0352c180664cbc158b116b242a4ce3af6631cce5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
