@@ -23,10 +23,22 @@ For more details, please refer to [design document][rbmc-design-document].
 The Manager interface exposes methods and properties to Get & Set BIOS
 attributes via dbus and its documented [here][pdi-manager-bios]
 
+### Service Name
+
+```txt
+xyz.openbmc_project.BIOSConfigManager
+```
+
 ### Object Path
 
 ```txt
-/xyz/openbmc_project/BIOSConfig/Manager
+/xyz/openbmc_project/bios_config/manager
+```
+
+### Interface Name
+
+```txt
+xyz.openbmc_project.BIOSConfig.Manager
 ```
 
 ### Methods
@@ -154,7 +166,19 @@ For more details, refer to the code [BIOS Support in IPMI][ipmi-intel-bios].
 
 ## RBC Password Interface
 
+### Service Name
+
+```txt
+xyz.openbmc_project.BIOSConfigManager
+```
+
 ### Object Path
+
+```txt
+/xyz/openbmc_project/bios_config/password
+```
+
+### Interface Name
 
 ```txt
 xyz.openbmc_project.BIOSConfig.Password
