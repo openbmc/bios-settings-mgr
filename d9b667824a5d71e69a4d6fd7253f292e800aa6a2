@@ -76,6 +76,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8eaad4b_bac487dd",
+        "filename": "README.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-05-06T05:58:43Z",
+      "side": 1,
+      "message": "The design document is in review(https://gerrit.openbmc.org/c/openbmc/docs/+/79327). Ampere is working on the design for Redfish Host Interface.",
+      "parentUuid": "01e7dc38_f913677b",
+      "range": {
+        "startLine": 194,
+        "startChar": 25,
+        "endLine": 194,
+        "endChar": 52
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c662a23_0285237b",
