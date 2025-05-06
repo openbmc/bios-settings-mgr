@@ -16,6 +16,87 @@
       "message": "Say for example, if a company X who is using bios-settings-mgr is now enabling this feature, and when they go back \u0026 forth between the levels of code that enables \u0026 disables this new feature flag .. that would mess up the existing persisted file right ? These sort of all tests need to be added to the commit message for people to feel confident that this commit does not break others.\n\nI don\u0027t think having this as a IFDEF is really solving the problem here ? Yes , it made the code base a little clear to understand , but would we need to give users that flexibility ? since redfish already have a secureboot schema. For that matter why can\u0027t it be detected runtime if the BIOS supports this feature or not ? rather than compile time ?",
       "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fbaeda8_8b908ece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T05:23:30Z",
+      "side": 1,
+      "message": "can you also comment about the redfish side commits for this ? in the review somewhere.",
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b23111e_02680b99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T05:23:30Z",
+      "side": 1,
+      "message": "Oh I see that you are now writing it in a different file,so we are probably saved there. can you add the testing details more elaoborately in the commit message.",
+      "parentUuid": "0236ea82_898191fa",
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c662a23_0285237b",
+        "filename": "meson.options",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T05:23:30Z",
+      "side": 1,
+      "message": "can this be figure out using a runtime check ? rather than a compile time ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066b022e_25c33b23",
+        "filename": "meson.options",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T05:23:30Z",
+      "side": 1,
+      "message": "can you please add more information about the feature here.",
+      "range": {
+        "startLine": 5,
+        "startChar": 18,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
