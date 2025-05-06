@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0236ea82_898191fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T04:34:30Z",
+      "side": 1,
+      "message": "Say for example, if a company X who is using bios-settings-mgr is now enabling this feature, and when they go back \u0026 forth between the levels of code that enables \u0026 disables this new feature flag .. that would mess up the existing persisted file right ? These sort of all tests need to be added to the commit message for people to feel confident that this commit does not break others.\n\nI don\u0027t think having this as a IFDEF is really solving the problem here ? Yes , it made the code base a little clear to understand , but would we need to give users that flexibility ? since redfish already have a secureboot schema. For that matter why can\u0027t it be detected runtime if the BIOS supports this feature or not ? rather than compile time ?",
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
