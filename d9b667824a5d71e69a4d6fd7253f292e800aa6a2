@@ -55,6 +55,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01e7dc38_f913677b",
+        "filename": "README.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-06T05:25:42Z",
+      "side": 1,
+      "message": "can you also please add design document details for this ? we would ideally want the design document for this to go in first .. if community does not agree with the design dicrection here - then this dbus object would be sitting like a dead code.",
+      "range": {
+        "startLine": 194,
+        "startChar": 25,
+        "endLine": 194,
+        "endChar": 52
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c662a23_0285237b",
         "filename": "meson.options",
         "patchSetId": 15
