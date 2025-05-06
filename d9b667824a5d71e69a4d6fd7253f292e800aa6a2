@@ -141,6 +141,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11ad6656_8b6697e9",
+        "filename": "meson.options",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-05-06T07:10:51Z",
+      "side": 1,
+      "message": "For redfish URI we can have runtime check but I think for object creation we would need the compile time check. If you suggest any way I can check and work on that approach",
+      "parentUuid": "7c662a23_0285237b",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "066b022e_25c33b23",
@@ -154,6 +178,30 @@
       "writtenOn": "2025-05-06T05:23:30Z",
       "side": 1,
       "message": "can you please add more information about the feature here.",
+      "range": {
+        "startLine": 5,
+        "startChar": 18,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f011219_62fba1fb",
+        "filename": "meson.options",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-05-06T07:10:51Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "066b022e_25c33b23",
       "range": {
         "startLine": 5,
         "startChar": 18,
