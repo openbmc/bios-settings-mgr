@@ -21,7 +21,7 @@ For more details, please refer to [design document][rbmc-design-document].
 ## RBC Manager Interface
 
 The Manager interface exposes methods and properties to Get & Set BIOS
-attributes via dbus and its documented [here][pdi-manager-bios]
+attributes via [dbus][pdi-manager-bios].
 
 ### Service Name
 
@@ -186,7 +186,7 @@ xyz.openbmc_project.BIOSConfig.Password
 
 ### Methods
 
-- **ChangePassword**  
+- **ChangePassword**
   Used to change the BIOS setup password.
 
 ### Properties
@@ -197,7 +197,7 @@ xyz.openbmc_project.BIOSConfig.Password
 ## RBC SecureBoot Interface
 
 The SecureBoot interface exposes methods and properties to Get & Set UEFI
-SecureBoot settings via dbus and its documented [here][pdi-secureboot-bios]
+SecureBoot settings via [dbus][pdi-secureboot-bios].
 
 ### Object Path
 
