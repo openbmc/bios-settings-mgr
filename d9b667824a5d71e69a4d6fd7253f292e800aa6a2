@@ -142,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc06d6de_6e5046ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-06-17T05:11:13Z",
+      "side": 1,
+      "message": "No, the patch is merged. Thanks a lot for review",
+      "parentUuid": "d29e8622_0758ca80",
+      "revId": "d9b667824a5d71e69a4d6fd7253f292e800aa6a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01e7dc38_f913677b",
