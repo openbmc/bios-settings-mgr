@@ -43,7 +43,6 @@ inline void convertBiosData(Manager& entry, Manager::BaseTable& baseTable,
 template <class Archive>
 void save(Archive& archive, const Manager& entry, const std::uint32_t version)
 {
-    lg2::error("Save is called with version {VER}", "VER", version);
     archive(entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
                 baseBIOSTable(),
             entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
