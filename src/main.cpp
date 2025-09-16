@@ -15,6 +15,7 @@
 */
 #include "configuration.h"
 
+#include "bootorder.hpp"
 #include "config.hpp"
 #include "manager.hpp"
 #include "password.hpp"
@@ -72,6 +73,15 @@ int main(int argc, char** argv)
     bios_config_sec::SecureBoot secureboot(objectServer, systemBus,
                                            persistPath);
 #endif
+
+    /**
+     * BootOrder class is responsible for handling methods and signals under
+     * the following object path and interface.
+     *
+     * Object path : /xyz/openbmc_project/bios_config/boot_order
+     * Interface : xyz.openbmc_project.BIOSConfig.BootOrder
+     */
+    bios_config::BootOrder bootorder(objectServer, systemBus, persistPath);
 
     io.run();
     return 0;
