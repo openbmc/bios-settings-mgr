@@ -223,7 +223,7 @@ void Password::changePassword(std::string userName, std::string currentPassword,
         json["IsAdminPwdChanged"] = true;
 
         std::ofstream ofs(seedFile.c_str(), std::ios::out);
-        const auto& writeData = json.dump();
+        const auto& writeData = json.dump(4);
         ofs << writeData;
         ofs.close();
     }
