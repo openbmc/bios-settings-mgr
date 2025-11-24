@@ -96,7 +96,7 @@ bool deserialize(const fs::path& path, Manager& entry)
     }
     catch (const std::exception& e)
     {
-        lg2::error("Failed to serialize: {ERROR}", "ERROR", e);
+        lg2::error("Failed to deserialize: {ERROR}", "ERROR", e);
         fs::remove(path);
         return false;
     }
