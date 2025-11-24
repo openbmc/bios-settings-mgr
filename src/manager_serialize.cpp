@@ -10,27 +10,9 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <fstream>
-#include <map>
-#include <variant>
-#include <vector>
 
-CEREAL_CLASS_VERSION(bios_config::Manager, 1);
 namespace bios_config
 {
-
-inline void convertBiosData(Manager& entry, Manager::BaseTable& baseTable,
-                            Manager::oldBaseTable& baseTbl)
-{
-    switch (cereal::detail::Version<Manager>::version)
-    {
-        case 0:
-            entry.convertBiosDataToVersion0(baseTbl, baseTable);
-            break;
-        case 1:
-            entry.convertBiosDataToVersion1(baseTbl, baseTable);
-            break;
-    }
-}
 
 /** @brief Function required by Cereal to perform serialization.
  *
@@ -59,36 +41,14 @@ void save(Archive& archive, const Manager& entry,
  *                       across code levels
  */
 template <class Archive>
-void load(Archive& archive, Manager& entry, const std::uint32_t version)
+void load(Archive& archive, Manager& entry, const std::uint32_t /*version*/)
 {
-    lg2::error("Load is called with version {VER}", "VER", version);
-
     Manager::BaseTable baseTable;
-    Manager::oldBaseTable baseTbl;
     Manager::PendingAttributes pendingAttrs;
 
-    auto currentVersion = cereal::detail::Version<Manager>::version;
-
-    switch (version)
-    {
-        case 0:
-            archive(baseTbl, pendingAttrs);
-            break;
-        case 1:
-            archive(baseTable, pendingAttrs);
-            break;
-    }
-
-    if (currentVersion != version)
-    {
-        lg2::error("Version Mismatch with saved data 1");
-        convertBiosData(entry, baseTable, baseTbl);
-    }
-
-    // Update Dbus
+    archive(baseTable, pendingAttrs);
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         baseBIOSTable(baseTable, true);
-
     entry.sdbusplus::xyz::openbmc_project::BIOSConfig::server::Manager::
         pendingAttributes(pendingAttrs, true);
 }
