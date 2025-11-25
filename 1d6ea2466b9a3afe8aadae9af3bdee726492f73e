@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3358546f_28da74b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-11-25T08:27:02Z",
+      "side": 1,
+      "message": "u mean checked in ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 57,
+        "endLine": 11,
+        "endChar": 62
+      },
+      "revId": "1d6ea2466b9a3afe8aadae9af3bdee726492f73e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10be535_bc860500",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-11-25T08:27:02Z",
+      "side": 1,
+      "message": "can you please re-word this ? Its very confusing.\n\nSo , since the changes are checked in separately - there is still a chance that the parsing can still fail ? and that\u0027s why we are reverting it ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "1d6ea2466b9a3afe8aadae9af3bdee726492f73e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
