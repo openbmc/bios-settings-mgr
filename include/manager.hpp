@@ -64,6 +64,7 @@ class Manager : public Base
     using PendingValue = std::variant<int64_t, std::string>;
     using AttributeDetails =
         std::tuple<AttributeType, CurrentValue, PendingValue>;
+    using Base::resetBIOSSettings;
 
     Manager() = delete;
     ~Manager() = default;
