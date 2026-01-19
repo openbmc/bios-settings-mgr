@@ -18,11 +18,9 @@ project(
 # project uses the same compiler, we can safely ignmore these info notes.
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
-conf_data = configuration_data()
 if (get_option('enable-bios-secureboot').allowed())
     add_project_arguments('-DENABLE_BIOS_SECUREBOOT', language: 'cpp')
 endif
-configure_file(output: 'configuration.h', configuration: conf_data)
 
 boost_args = [
     '-DBOOST_ALL_NO_LIB',
