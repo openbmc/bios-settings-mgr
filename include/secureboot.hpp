@@ -54,7 +54,7 @@ class SecureBoot : public SecureBootBase
      *
      *  @param[in] value - new value for the attribute
      *
-     *  @return On succes, return the new attribute
+     *  @return On success, return the new attribute
      */
     bool pendingEnable(bool value) override;
 
