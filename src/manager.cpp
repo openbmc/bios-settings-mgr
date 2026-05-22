@@ -32,8 +32,36 @@ namespace bios_config
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 using namespace sdbusplus::xyz::openbmc_project::BIOSConfig::Common::Error;
 
+static bool valueMatchesType(Manager::AttributeValue value,
+                             Base::AttributeType type)
+{
+    switch (type)
+    {
+        case Base::AttributeType::Enumeration:
+        case Base::AttributeType::String:
+        case Base::AttributeType::Password:
+            return std::holds_alternative<std::string>(value);
+        case Base::AttributeType::Integer:
+        case Base::AttributeType::Boolean:
+            return std::holds_alternative<int64_t>(value);
+    }
+    return false;
+}
+
 void Manager::setAttribute(AttributeName attribute, AttributeValue value)
 {
+    const auto& baseBIOSTable = Base::baseBIOSTable();
+    auto tableIter = baseBIOSTable.find(attribute);
+    if (tableIter == baseBIOSTable.end())
+    {
+        throw AttributeNotFound();
+    }
+    const AttributeType& type =
+        std::get<static_cast<uint8_t>(Index::attributeType)>(tableIter->second);
+    if (!valueMatchesType(value, type))
+    {
+        throw InvalidArgument();
+    }
     auto pendingAttrs = Base::pendingAttributes();
     auto iter = pendingAttrs.find(attribute);
 
@@ -43,19 +71,7 @@ void Manager::setAttribute(AttributeName attribute, AttributeValue value)
     }
     else
     {
-        Manager::PendingAttribute attributeValue;
-
-        if (std::get_if<int64_t>(&value))
-        {
-            std::get<0>(attributeValue) = AttributeType::Integer;
-        }
-        else
-        {
-            std::get<0>(attributeValue) = AttributeType::String;
-        }
-
-        std::get<1>(attributeValue) = value;
-        pendingAttrs.emplace(attribute, attributeValue);
+        pendingAttrs.emplace(attribute, std::make_tuple(type, value));
     }
 
     pendingAttributes(pendingAttrs);
