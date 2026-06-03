@@ -19,14 +19,9 @@
 #include "xyz/openbmc_project/Common/error.hpp"
 
 #include <boost/algorithm/hex.hpp>
-#include <boost/asio.hpp>
-#include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
 
 #include <fstream>
-#include <iostream>
 
 namespace bios_config_pwd
 {

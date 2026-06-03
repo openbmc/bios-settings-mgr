@@ -20,8 +20,6 @@
 #include "xyz/openbmc_project/BIOSConfig/Common/error.hpp"
 #include "xyz/openbmc_project/Common/error.hpp"
 
-#include <boost/asio.hpp>
-#include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
