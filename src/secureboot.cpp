@@ -52,6 +52,12 @@ void SecureBoot::serialize()
         std::filesystem::create_directories(secureBootFile.parent_path());
         std::ofstream os(secureBootFile.c_str(),
                          std::ios::out | std::ios::binary);
+        if (!os.is_open())
+        {
+            lg2::error("Failed to open file for serialization: {FILE}", "FILE",
+                       secureBootFile);
+            return;
+        }
         cereal::BinaryOutputArchive oarchive(os);
         oarchive(*this);
     }
@@ -69,6 +75,12 @@ bool SecureBoot::deserialize()
         {
             std::ifstream is(secureBootFile.c_str(),
                              std::ios::in | std::ios::binary);
+            if (!is.is_open())
+            {
+                lg2::error("Failed to open file for deserialization: {FILE}",
+                           "FILE", secureBootFile);
+                return false;
+            }
             cereal::BinaryInputArchive iarchive(is);
             iarchive(*this);
             return true;
@@ -78,6 +90,7 @@ bool SecureBoot::deserialize()
     catch (const std::exception& e)
     {
         lg2::error("Failed to deserialize SecureBoot: {ERROR}", "ERROR", e);
+        std::filesystem::remove(secureBootFile);
         return false;
     }
 }
