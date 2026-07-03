@@ -187,6 +187,7 @@ void Password::verifyPassword(std::string userName, std::string currentPassword,
         }
         return;
     }
+    lg2::error("BIOS password seed file does not exist: {FILE}", "FILE", seedFile);
     throw InternalFailure();
 }
 void Password::changePassword(std::string userName, std::string currentPassword,
