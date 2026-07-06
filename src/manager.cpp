@@ -40,8 +40,9 @@ static bool valueMatchesType(Manager::AttributeValue value,
         case Base::AttributeType::Password:
             return std::holds_alternative<std::string>(value);
         case Base::AttributeType::Integer:
-        case Base::AttributeType::Boolean:
             return std::holds_alternative<int64_t>(value);
+        case Base::AttributeType::Boolean:
+            return std::holds_alternative<bool>(value);
     }
     return false;
 }
@@ -99,6 +100,10 @@ Manager::AttributeDetails Manager::getAttribute(AttributeName attribute)
         {
             std::get<2>(value) = std::string();
         }
+        else if (std::get_if<bool>(&std::get<1>(value)))
+        {
+            std::get<2>(value) = false;
+        }
     }
     else
     {
@@ -119,8 +124,9 @@ Manager::BaseTable Manager::baseBIOSTable(BaseTable value)
 
 bool Manager::validateEnumOption(
     const std::string& attrValue,
-    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
-                                 std::string>>& options)
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string, bool>,
+                   std::string>>& options)
 {
     for (const auto& enumOptions : options)
     {
@@ -137,8 +143,9 @@ bool Manager::validateEnumOption(
 
 bool Manager::validateStringOption(
     const std::string& attrValue,
-    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
-                                 std::string>>& options)
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string, bool>,
+                   std::string>>& options)
 {
     size_t minStringLength = 0;
     size_t maxStringLength = 0;
@@ -173,8 +180,9 @@ bool Manager::validateStringOption(
 
 bool Manager::validateIntegerOption(
     const int64_t& attrValue,
-    const std::vector<std::tuple<BoundType, std::variant<int64_t, std::string>,
-                                 std::string>>& options)
+    const std::vector<
+        std::tuple<BoundType, std::variant<int64_t, std::string, bool>,
+                   std::string>>& options)
 {
     int64_t lowerBound = 0;
     int64_t upperBound = 0;
@@ -249,7 +257,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
         if (attributeType == AttributeType::Enumeration)
         {
             // For enumeration the expected variant types is Enumeration
-            if (std::get<1>(pair.second).index() == 0)
+            if (!std::holds_alternative<std::string>(std::get<1>(pair.second)))
             {
                 lg2::error("Enumeration property value is not enum");
                 throw InvalidArgument();
@@ -268,8 +276,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
         if (attributeType == AttributeType::String)
         {
-            // For enumeration the expected variant types is std::string
-            if (std::get<1>(pair.second).index() == 0)
+            if (!std::holds_alternative<std::string>(std::get<1>(pair.second)))
             {
                 lg2::error("String property value is not string");
                 throw InvalidArgument();
@@ -288,8 +295,7 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
         if (attributeType == AttributeType::Integer)
         {
-            // For enumeration the expected variant types is Integer
-            if (std::get<1>(pair.second).index() == 1)
+            if (!std::holds_alternative<int64_t>(std::get<1>(pair.second)))
             {
                 lg2::error("Integer property value is not int");
                 throw InvalidArgument();
@@ -301,6 +307,15 @@ Manager::PendingAttributes Manager::pendingAttributes(PendingAttributes value)
 
             if (!validateIntegerOption(attrValue, options))
             {
+                throw InvalidArgument();
+            }
+        }
+
+        if (attributeType == AttributeType::Boolean)
+        {
+            if (!std::holds_alternative<bool>(std::get<1>(pair.second)))
+            {
+                lg2::error("Boolean property value is not bool");
                 throw InvalidArgument();
             }
         }

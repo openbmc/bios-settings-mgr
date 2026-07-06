@@ -44,24 +44,26 @@ class Manager : public Base
         std::string,
         std::tuple<
             AttributeType, bool, std::string, std::string, std::string,
-            std::variant<int64_t, std::string>,
-            std::variant<int64_t, std::string>,
+            std::variant<int64_t, std::string, bool>,
+            std::variant<int64_t, std::string, bool>,
             std::vector<std::tuple<
-                BoundType, std::variant<int64_t, std::string>, std::string>>>>;
+                BoundType, std::variant<int64_t, std::string, bool>,
+                std::string>>>>;
 
     using ResetFlag = std::map<std::string, ResetFlag>;
 
     using PendingAttributes =
         std::map<std::string,
-                 std::tuple<AttributeType, std::variant<int64_t, std::string>>>;
+                 std::tuple<AttributeType,
+                            std::variant<int64_t, std::string, bool>>>;
 
     using PendingAttribute =
-        std::tuple<AttributeType, std::variant<int64_t, std::string>>;
+        std::tuple<AttributeType, std::variant<int64_t, std::string, bool>>;
 
     using AttributeName = std::string;
-    using AttributeValue = std::variant<int64_t, std::string>;
-    using CurrentValue = std::variant<int64_t, std::string>;
-    using PendingValue = std::variant<int64_t, std::string>;
+    using AttributeValue = std::variant<int64_t, std::string, bool>;
+    using CurrentValue = std::variant<int64_t, std::string, bool>;
+    using PendingValue = std::variant<int64_t, std::string, bool>;
     using AttributeDetails =
         std::tuple<AttributeType, CurrentValue, PendingValue>;
     using Base::resetBIOSSettings;
@@ -143,19 +145,19 @@ class Manager : public Base
     bool validateEnumOption(
         const std::string& attrValue,
         const std::vector<std::tuple<
-            BoundType, std::variant<int64_t, std::string>, std::string>>&
+            BoundType, std::variant<int64_t, std::string, bool>, std::string>>&
             options);
 
     bool validateStringOption(
         const std::string& attrValue,
         const std::vector<std::tuple<
-            BoundType, std::variant<int64_t, std::string>, std::string>>&
+            BoundType, std::variant<int64_t, std::string, bool>, std::string>>&
             options);
 
     bool validateIntegerOption(
         const int64_t& attrValue,
         const std::vector<std::tuple<
-            BoundType, std::variant<int64_t, std::string>, std::string>>&
+            BoundType, std::variant<int64_t, std::string, bool>, std::string>>&
             options);
 
     sdbusplus::asio::object_server& objServer;
