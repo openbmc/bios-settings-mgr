@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d115ed_9fb5f3a6",
+        "filename": "src/password.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2026-07-13T01:47:57Z",
+      "side": 1,
+      "message": "LGTM. Trivial, well-motivated, correctly placed. Approve after:\nConfirming seedFile is directly formattable by lg2 (or adding .string()).\nRunning clang-format if the project enforces an 80-column limit.\nConsider a follow-up patch to promote this into a proper phosphor-logging event entry with a distinct error type, so the failure is surfaced in Redfish and not only in the journal — but that\u0027s a separate change.",
+      "revId": "94d852e034ed2e671bc746270fe7360ac2fbf671",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
