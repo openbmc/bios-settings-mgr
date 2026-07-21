@@ -16,6 +16,24 @@
       "message": "LGTM. Trivial, well-motivated, correctly placed. Approve after:\nConfirming seedFile is directly formattable by lg2 (or adding .string()).\nRunning clang-format if the project enforces an 80-column limit.\nConsider a follow-up patch to promote this into a proper phosphor-logging event entry with a distinct error type, so the failure is surfaced in Redfish and not only in the journal — but that\u0027s a separate change.",
       "revId": "94d852e034ed2e671bc746270fe7360ac2fbf671",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d87dfa42_e838b1bf",
+        "filename": "src/password.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1003060
+      },
+      "writtenOn": "2026-07-21T07:00:12Z",
+      "side": 1,
+      "message": "I pushed a new patch with the column limit fix. I also confirmed that seedFile is directly formattable by lg2. It\u0027s of type std::filesystem::path, and lg2\u0027s string_like_type concept in phosphor-logging/lg2/conversion.hpp includes std::same_as\u003cstd::filesystem::path, std::decay_t\u003cT\u003e\u003e.",
+      "parentUuid": "85d115ed_9fb5f3a6",
+      "revId": "94d852e034ed2e671bc746270fe7360ac2fbf671",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
