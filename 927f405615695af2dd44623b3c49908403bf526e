@@ -16,6 +16,24 @@
       "message": "The bug fix and the holds_alternative migration are net improvements and should land. Before merge:\nRequired: add at least one unit test exercising Boolean set/get and Boolean vs. Integer type mismatch.\nRequired: confirm the coordinated rollout of phosphor-dbus-interfaces 92001, bmcweb, and phosphor-pldm consumers — link them in the commit message or the review thread.\nNice-to-have: replace std::get_if\u003cbool\u003e with std::holds_alternative\u003cbool\u003e for consistency, and add a short comment on the variant construction gotcha for Boolean vs. Integer values.",
       "revId": "927f405615695af2dd44623b3c49908403bf526e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347b4e06_3caffa23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2026-07-23T12:07:43Z",
+      "side": 1,
+      "message": "done, replaced std::get_if\u003cbool\u003e with std::holds_alternative\u003cbool\u003e for consistency.\ni dont see any unit testcases in this repo. i will try to add unit-cases in a separate commit",
+      "parentUuid": "032d4e77_82129cf0",
+      "revId": "927f405615695af2dd44623b3c49908403bf526e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
