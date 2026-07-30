@@ -32,7 +32,6 @@
 # data within them will be kept sorted.
 
 owners:
-- wangkuiying.wky@alibaba-inc.com
 - manojkiran.eda@gmail.com
 
 reviewers:
@@ -40,9 +39,6 @@ reviewers:
 matchers:
 
 openbmc:
-- name: Kuiying Wang
-  email: wangkuiying.wky@alibaba-inc.com
-  discord: Kwin
 - name: Manojkiran Eda
   email: manojkiran.eda@gmail.com
   discord: manojkiran
