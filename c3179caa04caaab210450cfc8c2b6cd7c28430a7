@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d7b548_af356b60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2026-07-31T05:49:20Z",
+      "side": 1,
+      "message": "@michael.pesa@icloud.com - did you complete the CLA process ? https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#starting-out\n\nonce the CLA process is done, you will be added to a developers group. The CI will be triggered only for those who has completed the CLA process.",
+      "revId": "c3179caa04caaab210450cfc8c2b6cd7c28430a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
