@@ -16,6 +16,24 @@
       "message": "@michael.pesa@icloud.com - did you complete the CLA process ? https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#starting-out\n\nonce the CLA process is done, you will be added to a developers group. The CI will be triggered only for those who has completed the CLA process.",
       "revId": "c3179caa04caaab210450cfc8c2b6cd7c28430a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d855d6_586b34e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003060
+      },
+      "writtenOn": "2026-08-01T04:08:05Z",
+      "side": 1,
+      "message": "Hi @manojkiran.eda@gmail.com - I emailed my signed individual CLA to manager@lfprojects.org on 6/10. Is there another place I should send it, or something else I should do on my end to complete the process?",
+      "parentUuid": "86d7b548_af356b60",
+      "revId": "c3179caa04caaab210450cfc8c2b6cd7c28430a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
