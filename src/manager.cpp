@@ -202,7 +202,7 @@ bool Manager::validateIntegerOption(
         return false;
     }
 
-    if (scalarIncrement == 0 ||
+    if (scalarIncrement != 0 &&
         ((std::abs(attrValue - lowerBound)) % scalarIncrement) != 0)
     {
         lg2::error(
