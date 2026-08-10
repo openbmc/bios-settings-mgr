@@ -52,6 +52,24 @@
       "parentUuid": "c3d855d6_586b34e8",
       "revId": "c3179caa04caaab210450cfc8c2b6cd7c28430a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3b5c926_1423c189",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2026-08-10T19:20:07Z",
+      "side": 1,
+      "message": "The linux foundation can be a bit slow forwarding on these emails. But the first question that\u0027s always asked by them is who do you work for. In general people need to get on a corporate CLA. You can email me your CLA at geissonator@gmail.com if you want to discuss.",
+      "parentUuid": "95b4ea5f_da2279c1",
+      "revId": "c3179caa04caaab210450cfc8c2b6cd7c28430a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
